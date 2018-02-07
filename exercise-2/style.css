@@ -1,1 +1,32 @@
+#title {
+	margin-top: 10%;
+}
 
+h1, h2, h3, h4, h5, h6 {
+	font-family: Bree Serif;
+}
+
+nav ul {
+	padding-left: 0;
+}
+
+nav ul li {
+	padding: 10px;
+	display: inline-block;
+}
+
+nav ul li a {
+	font-weight: bold;
+	color: #fd5c63;
+}
+
+#input-box {
+	width: 55%;
+	padding: 10px;
+	font-size: 150%;
+	font-family: Bree Serif;
+}
+
+.left-margin {
+	margin-left: 20%;
+}
