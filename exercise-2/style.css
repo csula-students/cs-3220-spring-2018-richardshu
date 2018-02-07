@@ -15,12 +15,23 @@ nav ul li {
 	display: inline-block;
 }
 
-nav ul li a {
-	font-weight: bold;
-	color: #fd5c63;
+nav ul li:hover {
+	color: white;
+	background-color: #fd5c63;
 }
 
-#input-box {
+nav ul li a {
+	color: #fd5c63;
+	font-weight: bold;
+}
+
+nav ul li a:hover {
+	color: white;
+	background-color: #fd5c63;
+	text-decoration: none;
+}
+
+.input-box {
 	width: 55%;
 	padding: 10px;
 	font-size: 150%;
@@ -29,4 +40,14 @@ nav ul li a {
 
 .left-margin {
 	margin-left: 20%;
+}
+
+button {
+	display: block;
+	margin: auto;
+}
+
+button:hover {
+	color: white;
+	background-color: #fd5c63;
 }
