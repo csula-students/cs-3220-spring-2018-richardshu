@@ -2,9 +2,69 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Homepage</title>
+	<title>Cookie Clicker</title>
+	<link rel="stylesheet" href="app.css">
+	<link href="https://fonts.googleapis.com/css?family=Sanchez" rel="stylesheet">
 </head>
 <body>
-	<h1>Hello world!</h1>
+	<h1 id="title">{Incremental Game}</h1>
+
+	<div id="story_book">
+		<h4>{Storyline}</h4>
+		<h4>{Storyline 2}</h4>
+		<h4>{More storylines to come}</h4>
+	</div>
+	<div id="resource_header">
+		<h2>{Resource Name}: 1000</h2>
+		<button>{Action}</button>
+	</div>
+
+	<div class="generators">
+
+		<!-- Generator box #1 -->
+		<div class="generator-box">
+			<div class="generator-header">
+				<h3>{Generator Name}</h3>
+				<h3>0</h3>
+			</div>
+			<div class="generator-description">
+				<h4>Generator description</h4>
+			</div>
+			<div class="generator-footer">
+				<h4>5/60</h4>
+				<button>10 Resources</button>
+			</div>
+		</div>
+
+		<!-- Generator box #2 -->
+		<div class="generator-box">
+			<div class="generator-header">
+				<h3>{Generator Name}</h3>
+				<h3>0</h3>
+			</div>
+			<div class="generator-description">
+				<h4>Generator description</h4>
+			</div>
+			<div class="generator-footer">
+				<h4>10/60</h4>
+				<button>100 Resources</button>
+			</div>
+		</div>
+
+		<!-- Generator box #3 -->
+		<div class="generator-box">
+			<div class="generator-header">
+				<h3>{Generator Name}</h3>
+				<h3>0</h3>
+			</div>
+			<div class="generator-description">
+				<h4>Generator description</h4>
+			</div>
+			<div class="generator-footer">
+				<h4>20/60</h4>
+				<button>1000 Resources</button>
+			</div>
+		</div>
+	</div>
 </body>
 </html>
