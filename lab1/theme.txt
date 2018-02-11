@@ -1,0 +1,13 @@
+Theme:
+# Strawberry Clicker
+
+Resource:
+* Strawberry
+
+Generators:
+* Cursor
+* Farmer
+* Tractor
+
+Story:
+* You are an aspiring strawberry farmer who wants to create a giant strawberry farm.
