@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Strawberry Clicker</title>
+	<link rel="stylesheet" href="app.css">
+	<link href="https://fonts.googleapis.com/css?family=Sanchez" rel="stylesheet">
+</head>
+<body>
+	<h1 id="title">Strawberry Clicker</h1>
+
+	<div id="story_book">
+		<h4>You are an aspiring strawberry farmer who wants to create a giant strawberry farm.</h4>
+	</div>
+	<div id="resource_header">
+		<h2 id="strawberry_count">Strawberries: 0</h2>
+		<button id="increment_button">Harvest Strawberry</button>
+	</div>
+
+	<div class="generators">
+
+		<!-- Generator box #1 -->
+		<div class="generator-box">
+			<div class="generator-header">
+				<h3>Clicker</h3>
+				<h3>0</h3>
+			</div>
+			<div class="generator-description">
+				<h4>Harvests 5 strawberries per minute</h4>
+			</div>
+			<div class="generator-footer">
+				<h4>5/60</h4>
+				<button class="generator-button">10 Strawberries</button>
+			</div>
+		</div>
+
+		<!-- Generator box #2 -->
+		<div class="generator-box">
+			<div class="generator-header">
+				<h3>Farmer</h3>
+				<h3>0</h3>
+			</div>
+			<div class="generator-description">
+				<h4>Harvests 10 strawberries per minute</h4>
+			</div>
+			<div class="generator-footer">
+				<h4>10/60</h4>
+				<button class="generator-button">100 Strawberries</button>
+			</div>
+		</div>
+
+		<!-- Generator box #3 -->
+		<div class="generator-box">
+			<div class="generator-header">
+				<h3>Tractor</h3>
+				<h3>0</h3>
+			</div>
+			<div class="generator-description">
+				<h4>Harvests 20 strawberries per minute</h4>
+			</div>
+			<div class="generator-footer">
+				<h4>20/60</h4>
+				<button  class="generator-button">1000 Strawberries</button>
+			</div>
+		</div>
+	</div>
+
+	<!-- JavaScript -->
+	<script>
+		window.incrementalGame = {
+			state: {
+				counter: 0
+			}
+		};
+	</script>
+	<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+h1, h2, h3, h4, h5, h6 {
+	font-family: Sanchez;
+}
+
+#title {
+	text-align: center;
+}
+
+#story_book {
+	color: white;
+	padding: 1em;
+	background-color: #696969;
+	overflow: scroll;
+}
+
+#resource_header {
+	display: flex;
+	justify-content: space-between;
+}
+
+.generators {
+	display: flex;
+	justify-content: center;
+}
+
+.generator-box {
+	width: 33%;
+	margin: 1em;
+	text-align: center;
+	background-color: #DC143C;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.generator-header, .generator-footer {
+	padding: 1em;
+	display: flex;
+	justify-content: space-between;
+}
+
+.generator-description {
+	padding: 1em;
+	background-color: #ffffff;
+}
+
+.generator-button {
+	
+}
