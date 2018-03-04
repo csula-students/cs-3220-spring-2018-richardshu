@@ -24,7 +24,7 @@ export default class Store {
 	}
 
 	/**
-	 * `dispatch` controls state changes. One should use only dispatch to show
+	 * `dispatch` controls state changes. One should only use dispatch to show
 	 * intent to change state and go through reducer to change so
 	 * @param {object} action - action should contain both `type` and `payload`
 	 */

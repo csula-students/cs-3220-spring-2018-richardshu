@@ -19,61 +19,13 @@
 	</div>
 
 	<div class="generators">
-
-		<!-- Generator box #1 -->
-		<div class="generator-box">
-			<div class="generator-header">
-				<h3>Clicker</h3>
-				<h3>0</h3>
-			</div>
-			<div class="generator-description">
-				<h4>Harvests 5 strawberries per minute</h4>
-			</div>
-			<div class="generator-footer">
-				<h4>5/60</h4>
-				<button class="generator-button">10 Strawberries</button>
-			</div>
-		</div>
-
-		<!-- Generator box #2 -->
-		<div class="generator-box">
-			<div class="generator-header">
-				<h3>Farmer</h3>
-				<h3>0</h3>
-			</div>
-			<div class="generator-description">
-				<h4>Harvests 10 strawberries per minute</h4>
-			</div>
-			<div class="generator-footer">
-				<h4>10/60</h4>
-				<button class="generator-button">100 Strawberries</button>
-			</div>
-		</div>
-
-		<!-- Generator box #3 -->
-		<div class="generator-box">
-			<div class="generator-header">
-				<h3>Tractor</h3>
-				<h3>0</h3>
-			</div>
-			<div class="generator-description">
-				<h4>Harvests 20 strawberries per minute</h4>
-			</div>
-			<div class="generator-footer">
-				<h4>20/60</h4>
-				<button  class="generator-button">1000 Strawberries</button>
-			</div>
-		</div>
+		<game-generator data-id="0"></game-generator>
+		<game-generator data-id="1"></game-generator>
+		<game-generator data-id="2"></game-generator>
 	</div>
 
-	<!-- JavaScript -->
-	<script>
-		window.incrementalGame = {
-			state: {
-				counter: 0
-			}
-		};
-	</script>
-	<script src="app.js"></script>
+	<!-- Import app.bundle.js -->
+	
+	<script src="dest/app.bundle.js"></script> 
 </body>
 </html>

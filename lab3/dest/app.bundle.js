@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -70,35 +70,53 @@
 "use strict";
 
 
-__webpack_require__(1);
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.default = {
+	growthRatio: 0.05,
+	actions: {
+		EXAMPLE: 'EXAMPLE_MUTATION',
+		BUY_GENERATOR: 'BUY_GENERATOR'
+	}
+};
 
-var _game = __webpack_require__(4);
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
 
-var _store = __webpack_require__(5);
+"use strict";
+
+
+__webpack_require__(2);
+
+var _game = __webpack_require__(5);
+
+var _store = __webpack_require__(6);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _reducer = __webpack_require__(6);
+var _reducer = __webpack_require__(7);
 
 var _reducer2 = _interopRequireDefault(_reducer);
 
-var _button = __webpack_require__(7);
+var _button = __webpack_require__(8);
 
 var _button2 = _interopRequireDefault(_button);
 
-var _counter = __webpack_require__(8);
+var _counter = __webpack_require__(9);
 
 var _counter2 = _interopRequireDefault(_counter);
 
-var _example = __webpack_require__(9);
+var _example = __webpack_require__(10);
 
 var _example2 = _interopRequireDefault(_example);
 
-var _generator = __webpack_require__(10);
+var _generator = __webpack_require__(11);
 
 var _generator2 = _interopRequireDefault(_generator);
 
-var _storyBook = __webpack_require__(11);
+var _storyBook = __webpack_require__(12);
 
 var _storyBook2 = _interopRequireDefault(_storyBook);
 
@@ -171,7 +189,22 @@ function main() {
 	const initialState = {
 		example: 'Hello custom element',
 		counter: 0,
-		generators: [],
+		generators: [{
+			name: 'Clicker',
+			rate: 5,
+			cost: 10,
+			quantity: 0
+		}, {
+			name: 'Farmer',
+			rate: 10,
+			cost: 100,
+			quantity: 0
+		}, {
+			name: 'Tractor',
+			rate: 20,
+			cost: 1000,
+			quantity: 0
+		}],
 		story: []
 	};
 
@@ -198,7 +231,7 @@ function main() {
 }
 
 /***/ }),
-/* 1 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function(){/*
@@ -399,10 +432,10 @@ Eg.whenReady(function(){requestAnimationFrame(function(){window.WebComponents.re
 
 //# sourceMappingURL=webcomponents-lite.js.map
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(3)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(4)))
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports) {
 
 var g;
@@ -429,7 +462,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -619,7 +652,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -653,7 +686,7 @@ function increment(state, modifier = 1) {
 }
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -688,7 +721,7 @@ class Store {
 	}
 
 	/**
-  * `dispatch` controls state changes. One should use only dispatch to show
+  * `dispatch` controls state changes. One should only use dispatch to show
   * intent to change state and go through reducer to change so
   * @param {object} action - action should contain both `type` and `payload`
   */
@@ -724,7 +757,7 @@ function deepCopy(obj) {
 }
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -734,10 +767,20 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 exports.default = reducer;
+
+var _constants = __webpack_require__(0);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function reducer(state, action) {
 	switch (action.type) {
-		case 'EXAMPLE_MUTATION':
+		case _constants2.default.actions.EXAMPLE_MUTATION:
 			state.example = action.payload;
+			return state;
+		case _constants2.default.actions.BUTTON_CLICK:
+			state.counter++; // THIS IS WHERE THE COUNTER IS STORED
 			return state;
 		default:
 			return state;
@@ -745,7 +788,7 @@ function reducer(state, action) {
 }
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -766,11 +809,28 @@ exports.default = function (store) {
 			// TODO: add click event to increment counter
 			// hint: use "store.dispatch" method (see example component)
 		}
+
+		handleStateChange(newState) {
+			this.innerHTML = `Strawberries: ${newState.counter}`;
+		}
+
+		// InnerHTML rendering, this code executes once when you create the object in HTML 
+		connectedCallback() {
+			this.innerHTML = '<button>Click me</button>';
+		}
+
+		disconnectedCallback() {}
 	};
 };
 
+var _constants = __webpack_require__(0);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -806,7 +866,7 @@ exports.default = function (store) {
 };
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -854,7 +914,7 @@ exports.default = function (store) {
 };
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -871,16 +931,50 @@ exports.default = function (store) {
 			this.store = store;
 
 			// TODO: render generator initial view
+			this.innerHTML = this.render();
 
 			// TODO: subscribe to store on change event
 
 			// TODO: add click event
+			this.addEventListener('click', () => {
+				this.store.dispatch({
+					type: 'BUY_GENERATOR',
+					payload: {
+						name: this.store.state.generators[this.dataset.id].name,
+						count: this.store.state.generators[this.dataset.id].quantity
+					}
+				});
+			});
+		}
+
+		connectedCallback() {
+			console.log(this, this.dataset.id);
+			this.id = this.dataset.id;
+			this.innerHTML = this.render();
+		}
+
+		render() {
+			return `
+			<div class="generator-box">
+				<div class="generator-header">
+					<h3>${this.store.state.generators[this.dataset.id].name}</h3>
+					<h3>0</h3>
+				</div>
+				<div class="generator-description">
+					<h4>Harvests ${this.store.state.generators[this.dataset.id].rate} strawberries per minute</h4>
+				</div>
+				<div class="generator-footer">
+					<h4>${this.store.state.generators[this.dataset.id].rate}/60</h4>
+					<button class="generator-button">${this.store.state.generators[this.dataset.id].cost} Strawberries</button>
+				</div>
+			</div>
+			`;
 		}
 	};
 };
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

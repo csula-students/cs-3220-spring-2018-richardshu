@@ -77,7 +77,26 @@ function main () {
 	const initialState = {
 		example: 'Hello custom element',
 		counter: 0,
-		generators: [],
+		generators: [
+			{
+				name: 'Clicker',
+				rate: 5,
+				cost: 10,
+				quantity: 0
+			},
+			{
+				name: 'Farmer',
+				rate: 10,
+				cost: 100,
+				quantity: 0
+			},
+			{
+				name: 'Tractor',
+				rate: 20,
+				cost: 1000,
+				quantity: 0
+			}
+		],
 		story: []
 	};
 

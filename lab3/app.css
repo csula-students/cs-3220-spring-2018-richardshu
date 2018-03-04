@@ -24,7 +24,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .generator-box {
-	width: 33%;
 	margin: 1em;
 	text-align: center;
 	background-color: #DC143C;
@@ -42,6 +41,8 @@ h1, h2, h3, h4, h5, h6 {
 	background-color: #ffffff;
 }
 
-.generator-button {
-	
+#increment_button, .generator-button {
+	font-family: Sanchez;
+	border-color: #90ee90;
+	background-color: #90ee90;
 }
