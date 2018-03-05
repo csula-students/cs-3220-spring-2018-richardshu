@@ -1,3 +1,5 @@
+import constants from '../constants.js';
+
 // Dependency Injection pattern to inject store into the ExampleComponent
 export default function (store) {
 	return class ExampleComponent extends window.HTMLElement {
@@ -13,7 +15,7 @@ export default function (store) {
 			// add click event
 			this.addEventListener('click', () => {
 				this.store.dispatch({
-					type: 'EXAMPLE_MUTATION',
+					type: constants.actions.EXAMPLE,
 					payload: 'You clicked this element'
 				});
 			});
