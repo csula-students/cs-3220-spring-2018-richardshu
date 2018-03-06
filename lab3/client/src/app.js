@@ -79,46 +79,58 @@ function main () {
 		counter: 0,
 		generators: [
 			{
+				type: 'autonomous',
 				name: 'Clicker',
 				description: 'Click click click! Harvest strawberries one click at a time',
 				rate: 5,
 				quantity: 0,
-				baseCost: 10
+				baseCost: 10,
+				unlockValue: 1
 			},
 			{
+				type: 'autonomous',
 				name: 'Farmer',
 				description: 'Old McDonald had a strawberry farm...',
 				rate: 10,
 				quantity: 0,
-				baseCost: 100
+				baseCost: 100,
+				unlockValue: 10
 			},
 			{
+				type: 'autonomous',
 				name: 'Tractor',
 				description: 'Vroom vroom...tractors coming through!',
 				rate: 20,
 				quantity: 0,
-				baseCost: 1000
+				baseCost: 1000,
+				unlockValue: 100
 			},
 			{
+				type: 'autonomous',
 				name: 'Mine',
 				description: 'Unlock a strawberry mine!',
 				rate: 30,
 				quantity: 0,
-				baseCost: 10000
+				baseCost: 10000,
+				unlockValue: 1000
 			},
 			{
+				type: 'autonomous',
 				name: 'Factory',
 				description: 'Strawberry mass production galore',
 				rate: 60,
 				quantity: 0,
-				baseCost: 100000
+				baseCost: 100000,
+				unlockValue: 10000
 			},
 			{
+				type: 'autonomous',
 				name: 'Nuclear Bomb',
 				description: 'A massive strawberry explosion',
 				rate: 120,
 				quantity: 0,
-				baseCost: 1000000
+				baseCost: 1000000,
+				unlockValue: 100000
 			}
 		],
 		story: []

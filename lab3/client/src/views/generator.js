@@ -16,14 +16,16 @@ export default function (store) {
 			this.addEventListener('click', () => {
 				this.store.dispatch({
 					type: constants.actions.BUY_GENERATOR,
-					payload: this.dataset.id
+					payload: {
+						name: this.store.state.generators[this.dataset.id].name,
+						quantity: this.store.state.generators[this.dataset.id].quantity + 1
+					}
 				})
 			});
 
 		}
 
 		handleStateChange (newState) {
-			this.store.state.generators[this.dataset.id].quantity = newState.generators[this.dataset.id].quantity; // Update the generator quantity
 			this.innerHTML = this.render(); // Refresh the HTML content
 		}
 

@@ -12,9 +12,15 @@ export default function reducer (state, action) {
 			return state;
 
 		case constants.actions.BUY_GENERATOR:
-			state.generators[action.payload].quantity++; // action.payload is the generator's id
-			return state;
-
+			for (var i = 0; i < state.generators.length; i++) {
+				const generator = state.generators[i];
+				if (generator.name === action.payload.name) {
+					state.counter = state.counter - generator.baseCost; // Subtract the generator cost from the total # of strawberries
+					generator.quantity = action.payload.quantity; // Update the generator quantity
+					return state;
+				}
+			}
+		
 		default:
 			return state;
 	}
