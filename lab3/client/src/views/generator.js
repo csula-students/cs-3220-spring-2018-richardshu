@@ -21,7 +21,7 @@ export default function (store) {
 						name: this.store.state.generators[this.dataset.id].name,
 						quantity: this.store.state.generators[this.dataset.id].quantity + 1
 					}
-				})
+				});
 			});
 
 		}
@@ -54,7 +54,7 @@ export default function (store) {
 				</div>
 				<div class="generator-footer">
 					<h4>${generator.generate()}/60</h4>
-					<button class="generator-button">${generator.getCost()} STRAWBERRIES</button>
+					<button class="generator-button">${generator.getCost()} Strawberries</button>
 				</div>
 			</div>
 			`
