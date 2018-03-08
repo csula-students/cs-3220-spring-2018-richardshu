@@ -1,4 +1,5 @@
 import constants from '../constants.js';
+import Generator from '../models/generator.js';
 
 export default function (store) {
 	return class GeneratorComponent extends window.HTMLElement {
@@ -27,6 +28,7 @@ export default function (store) {
 
 		handleStateChange (newState) {
 			this.innerHTML = this.render(); // Refresh the HTML content
+			console.log(this.store.state);
 		}
 
 		connectedCallback () {
@@ -40,18 +42,19 @@ export default function (store) {
 		}
 
 		render () {
+			const generator = new Generator(this.store.state.generators[this.dataset.id]);
 			return `
 			<div class="generator-box">
 				<div class="generator-header">
-					<h3>${this.store.state.generators[this.dataset.id].name}</h3>
-					<h3>${this.store.state.generators[this.dataset.id].quantity}</h3>
+					<h3>${generator.name}</h3>
+					<h3>${generator.quantity}</h3>
 				</div>
 				<div class="generator-description">
-					<h4>${this.store.state.generators[this.dataset.id].description}</h4>
+					<h4>${generator.description}</h4>
 				</div>
 				<div class="generator-footer">
-					<h4>${this.store.state.generators[this.dataset.id].rate}/60</h4>
-					<button class="generator-button">${this.store.state.generators[this.dataset.id].baseCost} STRAWBERRIES</button>
+					<h4>${generator.generate()}/60</h4>
+					<button class="generator-button">${generator.getCost()} STRAWBERRIES</button>
 				</div>
 			</div>
 			`

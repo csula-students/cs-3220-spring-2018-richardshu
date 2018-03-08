@@ -28,9 +28,6 @@ export default class Generator {
 	 */
 	getCost () {
 		// TODO: implement the function according to doc above
-		if (this.quantity == 0) {
-			return this.baseCost;
-		}
 		return +(this.baseCost * Math.pow(1 + constants.growthRatio, this.quantity)).toFixed(2); // Round to 2 decimal places
 	}
 
