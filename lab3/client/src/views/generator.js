@@ -12,6 +12,8 @@ export default function (store) {
 
 			// TODO: subscribe to store on change event
 			this.onStateChange = this.handleStateChange.bind(this);
+			// const generatorButton = document.querySelector(`[data-id="${this.dataset.id}"] > .generator-box > .generator-footer > .generator-button`);
+			// generatorButton.onStateChange = this.handleStateChange.bind(this);
 
 			// TODO: add click event
 			this.addEventListener('click', () => {
@@ -23,7 +25,6 @@ export default function (store) {
 					}
 				});
 			});
-
 		}
 
 		handleStateChange (newState) {
