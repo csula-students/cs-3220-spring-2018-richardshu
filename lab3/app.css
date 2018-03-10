@@ -1,5 +1,9 @@
 h1, h2, h3, h4, h5, h6 {
-	font-family: Sanchez;
+	font-family: Poppins;
+}
+
+body {
+	background-image: linear-gradient(to top, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
 }
 
 #title {
@@ -24,9 +28,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .generator-box {
+	width: 25em;
 	margin: 1em;
 	text-align: center;
-	background-color: #DC143C;
+	background-color: #dc143c;
 	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
@@ -41,8 +46,17 @@ h1, h2, h3, h4, h5, h6 {
 	background-color: #ffffff;
 }
 
-#increment_button, .generator-button {
-	font-family: Sanchez;
-	border-color: #90ee90;
-	background-color: #90ee90;
+#increment_button,.generator-button {
+    padding: 1em;
+    color: #333435;
+    cursor: pointer;
+    font-weight: 700;
+    border-radius: 1em;
+    font-family: Poppins;
+    background-color: #7fff00;
+    border: #7fff00;
+}
+
+#increment_button:hover, .generator-button:hover {
+	background-color: #fff;
 }

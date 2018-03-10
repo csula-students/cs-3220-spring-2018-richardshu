@@ -2,7 +2,7 @@
 // PubSub is a single object for publishing data to multiple subscribers.
 class PubSub {
 	constructor () {
-		this.subscribers = [];
+		this.subscribers = []; // A list of functions
 	}
 
 	// Adds a new function to the list of existing functions.
@@ -21,21 +21,17 @@ class PubSub {
 // Create a PubSub object
 const pubSub = new PubSub();
 
-
-let stawberry_count = document.getElementById("strawberry_count");
-
 // Define an increment function
-function increment () {
+function increment (data) {
 	incrementalGame.state.counter++;
-	strawberry_count.innerHTML = "Strawberries " + incrementalGame.state.counter;
+	strawberry_count.innerHTML = incrementalGame.state.counter;
 }
 
 // Subscribe
 pubSub.subscribe(increment);
 
-
 // Clicking the increment button triggers the increment function
 const incrementButton = document.getElementById("increment_button");
 incrementButton.addEventListener('click', () => {
-	pubSub.publish(window.incrementalGame.state.counter);
+	pubSub.publish();
 });

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 1);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -77,6 +77,7 @@ exports.default = {
 	growthRatio: 0.05,
 	actions: {
 		EXAMPLE: 'EXAMPLE_MUTATION',
+		BUTTON_CLICK: 'BUTTON_CLICK',
 		BUY_GENERATOR: 'BUY_GENERATOR'
 	}
 };
@@ -88,35 +89,95 @@ exports.default = {
 "use strict";
 
 
-__webpack_require__(2);
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
 
-var _game = __webpack_require__(5);
+var _constants = __webpack_require__(0);
 
-var _store = __webpack_require__(6);
+var _constants2 = _interopRequireDefault(_constants);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+class Generator {
+	/**
+  * Create a new generator based on the meta object passing in
+  * @constructor
+  * @param {object} meta - meta object for constructing generator
+  */
+	constructor(meta) {
+		this.type = meta.type;
+		this.name = meta.name;
+		this.description = meta.description;
+		this.rate = meta.rate;
+		this.quantity = meta.quantity;
+		this.baseCost = meta.baseCost;
+		this.unlockValue = meta.unlockValue;
+	}
+
+	/**
+  * getCost computes cost exponentially based on quantity (as formula below)
+  * xt = x0(1 + r)^t
+  * which 
+  * xt is the value of x with t quantity
+  * x0 is base value
+  * r is growth ratio (see constants.growthRatio)
+  * t is the quantity
+  * @return {number} the cost of buying another generator
+  */
+	getCost() {
+		// TODO: implement the function according to doc above
+		return +(this.baseCost * Math.pow(1 + _constants2.default.growthRatio, this.quantity)).toFixed(2); // Round to 2 decimal places
+	}
+
+	/**
+  * generate computes how much this type of generator generates -
+  * rate * quantity
+  * @return {number} how much this generator generates
+  */
+	generate() {
+		// TODO: implement based on doc above
+		return this.rate * this.quantity;
+	}
+}
+exports.default = Generator;
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(3);
+
+var _game = __webpack_require__(6);
+
+var _store = __webpack_require__(7);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _reducer = __webpack_require__(7);
+var _reducer = __webpack_require__(8);
 
 var _reducer2 = _interopRequireDefault(_reducer);
 
-var _button = __webpack_require__(8);
+var _button = __webpack_require__(9);
 
 var _button2 = _interopRequireDefault(_button);
 
-var _counter = __webpack_require__(9);
+var _counter = __webpack_require__(10);
 
 var _counter2 = _interopRequireDefault(_counter);
 
-var _example = __webpack_require__(10);
+var _example = __webpack_require__(11);
 
 var _example2 = _interopRequireDefault(_example);
 
-var _generator = __webpack_require__(11);
+var _generator = __webpack_require__(12);
 
 var _generator2 = _interopRequireDefault(_generator);
 
-var _storyBook = __webpack_require__(12);
+var _storyBook = __webpack_require__(13);
 
 var _storyBook2 = _interopRequireDefault(_storyBook);
 
@@ -190,20 +251,53 @@ function main() {
 		example: 'Hello custom element',
 		counter: 0,
 		generators: [{
+			type: 'autonomous',
 			name: 'Clicker',
+			description: 'Click click click! Harvest strawberries one click at a time',
 			rate: 5,
-			cost: 10,
-			quantity: 0
+			quantity: 0,
+			baseCost: 10,
+			unlockValue: 1
 		}, {
+			type: 'autonomous',
 			name: 'Farmer',
+			description: 'Old McDonald had a strawberry farm...',
 			rate: 10,
-			cost: 100,
-			quantity: 0
+			quantity: 0,
+			baseCost: 100,
+			unlockValue: 10
 		}, {
+			type: 'autonomous',
 			name: 'Tractor',
+			description: 'Vroom vroom...tractors coming through!',
 			rate: 20,
-			cost: 1000,
-			quantity: 0
+			quantity: 0,
+			baseCost: 1000,
+			unlockValue: 100
+		}, {
+			type: 'autonomous',
+			name: 'Mine',
+			description: 'Unlock a strawberry mine!',
+			rate: 30,
+			quantity: 0,
+			baseCost: 10000,
+			unlockValue: 1000
+		}, {
+			type: 'autonomous',
+			name: 'Factory',
+			description: 'Strawberry mass production galore',
+			rate: 60,
+			quantity: 0,
+			baseCost: 100000,
+			unlockValue: 10000
+		}, {
+			type: 'autonomous',
+			name: 'Nuclear Bomb',
+			description: 'A massive strawberry explosion',
+			rate: 120,
+			quantity: 0,
+			baseCost: 1000000,
+			unlockValue: 100000
 		}],
 		story: []
 	};
@@ -231,7 +325,7 @@ function main() {
 }
 
 /***/ }),
-/* 2 */
+/* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function(){/*
@@ -432,10 +526,10 @@ Eg.whenReady(function(){requestAnimationFrame(function(){window.WebComponents.re
 
 //# sourceMappingURL=webcomponents-lite.js.map
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(4)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(5)))
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports) {
 
 var g;
@@ -462,7 +556,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -652,7 +746,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -686,7 +780,7 @@ function increment(state, modifier = 1) {
 }
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -757,7 +851,7 @@ function deepCopy(obj) {
 }
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -772,23 +866,40 @@ var _constants = __webpack_require__(0);
 
 var _constants2 = _interopRequireDefault(_constants);
 
+var _generator = __webpack_require__(1);
+
+var _generator2 = _interopRequireDefault(_generator);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function reducer(state, action) {
 	switch (action.type) {
-		case _constants2.default.actions.EXAMPLE_MUTATION:
+
+		case _constants2.default.actions.EXAMPLE:
 			state.example = action.payload;
 			return state;
+
 		case _constants2.default.actions.BUTTON_CLICK:
-			state.counter++; // THIS IS WHERE THE COUNTER IS STORED
+			state.counter++;
 			return state;
+
+		case _constants2.default.actions.BUY_GENERATOR:
+			for (var i = 0; i < state.generators.length; i++) {
+				const generator = new _generator2.default(state.generators[i]);
+				if (generator.name === action.payload.name) {
+					state.counter = state.counter - generator.getCost(); // Subtract the generator cost from the total # of strawberries
+					state.generators[i].quantity = action.payload.quantity; // Update the generator quantity
+					return state;
+				}
+			}
+
 		default:
 			return state;
 	}
 }
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -806,20 +917,34 @@ exports.default = function (store) {
 
 			this.onStateChange = this.handleStateChange.bind(this);
 
+			// TODO: render generator initial view
+			this.innerHTML = '<button id="increment_button">Harvest Strawberry</button>';
+
 			// TODO: add click event to increment counter
-			// hint: use "store.dispatch" method (see example component)
+			this.addEventListener('click', () => {
+				this.store.dispatch({
+					type: _constants2.default.actions.BUTTON_CLICK
+				});
+			});
 		}
 
 		handleStateChange(newState) {
-			this.innerHTML = `Strawberries: ${newState.counter}`;
+			const strawberry_count = document.getElementById('strawberry_count');
+			strawberry_count.innerHTML = newState.counter;
+			console.log(this.store.state.counter);
 		}
 
 		// InnerHTML rendering, this code executes once when you create the object in HTML 
 		connectedCallback() {
-			this.innerHTML = '<button>Click me</button>';
+			console.log(this);
+			console.log('ButtonComponent#onConnectedCallback', this);
+			this.store.subscribe(this.onStateChange);
 		}
 
-		disconnectedCallback() {}
+		disconnectedCallback() {
+			console.log('ButtonComponent#onDisconnectedCallback', this);
+			this.store.unsubscribe(this.onStateChange);
+		}
 	};
 };
 
@@ -830,7 +955,7 @@ var _constants2 = _interopRequireDefault(_constants);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -866,7 +991,7 @@ exports.default = function (store) {
 };
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -890,7 +1015,7 @@ exports.default = function (store) {
 			// add click event
 			this.addEventListener('click', () => {
 				this.store.dispatch({
-					type: 'EXAMPLE_MUTATION',
+					type: _constants2.default.actions.EXAMPLE,
 					payload: 'You clicked this element'
 				});
 			});
@@ -913,8 +1038,14 @@ exports.default = function (store) {
 	};
 };
 
+var _constants = __webpack_require__(0);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -934,38 +1065,51 @@ exports.default = function (store) {
 			this.innerHTML = this.render();
 
 			// TODO: subscribe to store on change event
+			this.onStateChange = this.handleStateChange.bind(this);
+			// const generatorButton = document.querySelector(`[data-id="${this.dataset.id}"] > .generator-box > .generator-footer > .generator-button`);
+			// generatorButton.onStateChange = this.handleStateChange.bind(this);
 
 			// TODO: add click event
 			this.addEventListener('click', () => {
 				this.store.dispatch({
-					type: 'BUY_GENERATOR',
+					type: _constants2.default.actions.BUY_GENERATOR,
 					payload: {
 						name: this.store.state.generators[this.dataset.id].name,
-						count: this.store.state.generators[this.dataset.id].quantity
+						quantity: this.store.state.generators[this.dataset.id].quantity + 1
 					}
 				});
 			});
 		}
 
+		handleStateChange(newState) {
+			this.innerHTML = this.render(); // Refresh the HTML content
+			console.log(this.store.state);
+		}
+
 		connectedCallback() {
-			console.log(this, this.dataset.id);
-			this.id = this.dataset.id;
-			this.innerHTML = this.render();
+			console.log('GeneratorComponent#onConnectedCallback', this);
+			this.store.subscribe(this.onStateChange);
+		}
+
+		disconnectedCallback() {
+			console.log('GeneratorComponent#onDisconnectedCallback', this);
+			this.store.unsubscribe(this.onStageChange);
 		}
 
 		render() {
+			const generator = new _generator2.default(this.store.state.generators[this.dataset.id]);
 			return `
 			<div class="generator-box">
 				<div class="generator-header">
-					<h3>${this.store.state.generators[this.dataset.id].name}</h3>
-					<h3>0</h3>
+					<h3>${generator.name}</h3>
+					<h3>${generator.quantity}</h3>
 				</div>
 				<div class="generator-description">
-					<h4>Harvests ${this.store.state.generators[this.dataset.id].rate} strawberries per minute</h4>
+					<h4>${generator.description}</h4>
 				</div>
 				<div class="generator-footer">
-					<h4>${this.store.state.generators[this.dataset.id].rate}/60</h4>
-					<button class="generator-button">${this.store.state.generators[this.dataset.id].cost} Strawberries</button>
+					<h4>${generator.generate()}/60</h4>
+					<button class="generator-button">${generator.getCost()} Strawberries</button>
 				</div>
 			</div>
 			`;
@@ -973,8 +1117,18 @@ exports.default = function (store) {
 	};
 };
 
+var _constants = __webpack_require__(0);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+var _generator = __webpack_require__(1);
+
+var _generator2 = _interopRequireDefault(_generator);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";

@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<title>Strawberry Clicker</title>
 	<link rel="stylesheet" href="app.css">
-	<link href="https://fonts.googleapis.com/css?family=Sanchez" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 </head>
 <body>
 	<h1 id="title">Strawberry Clicker</h1>
@@ -15,7 +15,7 @@
 	<div id="resource_header">
 		<h2>Strawberries: </h2>
 		<h2 id="strawberry_count">0</h2>
-		<button id="increment_button">Harvest Strawberry</button>
+		<game-button>Harvest Strawberry</game-button>
 	</div>
 
 	<div class="generators">
@@ -23,9 +23,13 @@
 		<game-generator data-id="1"></game-generator>
 		<game-generator data-id="2"></game-generator>
 	</div>
+	<div class="generators">
+		<game-generator data-id="3"></game-generator>
+		<game-generator data-id="4"></game-generator>
+		<game-generator data-id="5"></game-generator>
+	</div>
 
 	<!-- Import app.bundle.js -->
-	
 	<script src="dest/app.bundle.js"></script> 
 </body>
 </html>
