@@ -1,3 +1,6 @@
+import constants from '../constants.js';
+import Story from '../models/story.js';
+
 export default function (store) {
 	return class StoryBookComponent extends window.HTMLElement {
 		constructor () {
@@ -16,10 +19,12 @@ export default function (store) {
 		}
 
 		connectedCallback () {
+			console.log('StoryBookComponent#onConnectedCallback', this);
 			this.store.subscribe(this.onStateChange);
 		}
 
 		disconnectedCallback () {
+			console.log('StoryBookComponent#onDisconnectedCallback', this);
 			this.store.unsubscribe(this.onStateChange);
 		}
 
