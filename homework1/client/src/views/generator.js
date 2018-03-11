@@ -8,27 +8,14 @@ export default function (store) {
 			this.store = store;
 
 			// TODO: render generator initial view
-			this.innerHTML = this.render();
+			this.render();
 
 			// TODO: subscribe to store on change event
 			this.onStateChange = this.handleStateChange.bind(this);
-			// const generatorButton = document.querySelector(`[data-id="${this.dataset.id}"] > .generator-box > .generator-footer > .generator-button`);
-			// generatorButton.onStateChange = this.handleStateChange.bind(this);
-
-			// TODO: add click event
-			this.addEventListener('click', () => {
-				this.store.dispatch({
-					type: constants.actions.BUY_GENERATOR,
-					payload: {
-						name: this.store.state.generators[this.dataset.id].name,
-						quantity: this.store.state.generators[this.dataset.id].quantity + 1
-					}
-				});
-			});
 		}
 
 		handleStateChange (newState) {
-			this.innerHTML = this.render(); // Refresh the HTML content
+			this.render(); // Refresh the HTML content
 			console.log(this.store.state);
 		}
 
@@ -44,7 +31,7 @@ export default function (store) {
 
 		render () {
 			const generator = new Generator(this.store.state.generators[this.dataset.id]);
-			return `
+			this.innerHTML = `
 			<div class="generator-box">
 				<div class="generator-header">
 					<h3>${generator.name}</h3>
@@ -54,11 +41,21 @@ export default function (store) {
 					<h4>${generator.description}</h4>
 				</div>
 				<div class="generator-footer">
-					<h4>${generator.generate()}/60</h4>
+					<h4>${generator.rate}/60</h4>
 					<button class="generator-button">${generator.getCost()} Strawberries</button>
 				</div>
-			</div>
-			`
+			</div>`
+
+			// TODO: update the quantity of generators
+			this.querySelector('.generator-button').addEventListener('click', () => {
+				this.store.dispatch({
+					type: constants.actions.BUY_GENERATOR,
+					payload: {
+						name: this.store.state.generators[this.dataset.id].name,
+						quantity: this.store.state.generators[this.dataset.id].quantity + 1
+					}
+				});
+			});
 		}
 	};
 }

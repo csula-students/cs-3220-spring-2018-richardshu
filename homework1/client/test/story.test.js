@@ -15,6 +15,6 @@ describe('Story model', () => {
 		const story = new Story(mock.story);
 		expect(story.state).toEqual('hidden');
 		story.unlock();
-		expect(story.state).Equal('visible');
+		expect(story.state).toEqual('visible');
 	});
 });

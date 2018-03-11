@@ -84,7 +84,7 @@ function main () {
 				description: 'Click click click! Harvest strawberries one click at a time',
 				rate: 5,
 				quantity: 0,
-				baseCost: 10,
+				baseCost: 1,
 				unlockValue: 1
 			},
 			{
@@ -93,7 +93,7 @@ function main () {
 				description: 'Old McDonald had a strawberry farm...',
 				rate: 10,
 				quantity: 0,
-				baseCost: 100,
+				baseCost: 10,
 				unlockValue: 10
 			},
 			{
@@ -102,7 +102,7 @@ function main () {
 				description: 'Vroom vroom...tractors coming through!',
 				rate: 20,
 				quantity: 0,
-				baseCost: 1000,
+				baseCost: 100,
 				unlockValue: 100
 			},
 			{
@@ -111,7 +111,7 @@ function main () {
 				description: 'Unlock a strawberry mine!',
 				rate: 30,
 				quantity: 0,
-				baseCost: 10000,
+				baseCost: 1000,
 				unlockValue: 1000
 			},
 			{
@@ -120,7 +120,7 @@ function main () {
 				description: 'Strawberry mass production galore',
 				rate: 60,
 				quantity: 0,
-				baseCost: 100000,
+				baseCost: 10000,
 				unlockValue: 10000
 			},
 			{
@@ -129,11 +129,48 @@ function main () {
 				description: 'A massive strawberry explosion',
 				rate: 120,
 				quantity: 0,
-				baseCost: 1000000,
+				baseCost: 100000,
 				unlockValue: 100000
 			}
 		],
-		story: []
+		story: [
+			{
+				name: 'Clicker',
+				description: 'Clicker is now available',
+				triggeredAt: 10,
+				state: 'hidden'
+			},
+			{
+				name: 'Farmer',
+				description: 'The farmers have arrived',
+				triggeredAt: 100,
+				state: 'hidden'
+			},
+			{
+				name: 'Tractor',
+				description: 'Tractors for sale',
+				triggeredAt: 1000,
+				state: 'hidden'
+			},
+			{
+				name: 'Mine',
+				description: 'A new mine has been found!',
+				triggeredAt: 10000,
+				state: 'hidden'
+			},
+			{
+				name: 'Factory',
+				description: 'The factory is now open',
+				triggeredAt: 100000,
+				state: 'hidden'
+			},
+			{
+				name: 'Nuclear Bomb',
+				description: 'The scientists have invented the nuclear bomb',
+				triggeredAt: 1000000,
+				state: 'hidden'
+			}
+		]
 	};
 
 	// initialize store

@@ -13,11 +13,14 @@ export default class Story {
 
 	/**
 	 * isUnlockYet checks if this story is ready to be unlocked yet
-	 * @param {number} value - the resource value at the moment
+	 * @param {number} numberOfResources - the resource value at the moment
 	 * @return {boolean} if this story is unlockable
 	 */
-	isUnlockYet (value) {
+	isUnlockYet (numberOfResources) {
 		// TODO: implement based on doc
+		if (numberOfResources >= this.triggeredAt) {
+			return true;
+		}
 		return false;
 	}
 
@@ -26,5 +29,6 @@ export default class Story {
 	 */
 	unlock () {
 		// TODO: change the story state to "visible"
+		this.state = 'visible';
 	}
 }
