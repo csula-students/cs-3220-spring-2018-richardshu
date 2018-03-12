@@ -1033,8 +1033,6 @@ exports.default = function (store) {
 			super();
 			this.store = store;
 
-			this.onStateChange = this.handleStateChange.bind(this);
-
 			// TODO: render generator initial view
 			this.innerHTML = '<button id="increment_button">Harvest Strawberry</button>';
 
@@ -1044,24 +1042,6 @@ exports.default = function (store) {
 					type: _constants2.default.actions.BUTTON_CLICK
 				});
 			});
-		}
-
-		handleStateChange(newState) {
-			const strawberry_count = document.getElementById('strawberry_count');
-			strawberry_count.innerHTML = newState.counter;
-			console.log(this.store.state.counter);
-		}
-
-		// InnerHTML rendering, this code executes once when you create the object in HTML 
-		connectedCallback() {
-			console.log(this);
-			console.log('ButtonComponent#onConnectedCallback', this);
-			this.store.subscribe(this.onStateChange);
-		}
-
-		disconnectedCallback() {
-			console.log('ButtonComponent#onDisconnectedCallback', this);
-			this.store.unsubscribe(this.onStateChange);
 		}
 	};
 };
@@ -1089,21 +1069,29 @@ exports.default = function (store) {
 			super();
 			this.store = store;
 			// TODO: render counter inner HTML based on the store state
+			this.render();
 
 			this.onStateChange = this.handleStateChange.bind(this);
 		}
 
 		handleStateChange(newState) {
-			console.log('CounterComponent#stateChange', this, newState);
+			console.log('CounterComponent ' + this.store.state.counter);
 			// TODO: update inner HTML based on the new state
+			this.render();
 		}
 
 		connectedCallback() {
+			console.log('CounterComponent#onConnectedCallback', this);
 			this.store.subscribe(this.onStateChange);
 		}
 
 		disconnectedCallback() {
+			console.log('CounterComponent#onDisconnectedCallback', this);
 			this.store.unsubscribe(this.onStateChange);
+		}
+
+		render() {
+			this.innerHTML = `<h2>${this.store.state.counter}</h2>`;
 		}
 	};
 };
