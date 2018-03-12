@@ -33,7 +33,6 @@ export default function reducer (state, action) {
 				if (story.isUnlockYet(state.counter)) {
 					story.unlock(); // Set story state to "visible"
 					state.story[i].state = story.state;
-					break;
 				}
 			}
 			return state;

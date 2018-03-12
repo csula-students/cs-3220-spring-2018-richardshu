@@ -10,7 +10,6 @@ export default function (store) {
 		}
 
 		handleStateChange (newState) {
-			console.log('CounterComponent = ' + this.store.state.counter);
 			// TODO: update inner HTML based on the new state
 			this.render();
 		}

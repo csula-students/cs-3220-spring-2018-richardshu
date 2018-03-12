@@ -860,15 +860,18 @@ function loop(store) {
 	for (var i = 0; i < store.state.generators.length; i++) {
 		const generator = new _generator2.default(store.state.generators[i]);
 		store.dispatch({
-			action: _constants2.default.actions.INCREMENT,
+			type: _constants2.default.actions.INCREMENT,
 			payload: generator.generate()
 		});
 	}
 
-	// TODO: triggers stories from story to display state if they are passed
+	// TODO: triggers stories from story to display state if they are past
 	//       the `triggeredAt` points
 	// hint: use store.dispatch to send event for changing events state
-
+	store.dispatch({
+		type: _constants2.default.actions.CHECK_STORY,
+		payload: store.state
+	});
 
 	// recursively calls loop method every second
 	setTimeout(loop.bind(this, store), interval);
@@ -1002,7 +1005,6 @@ function reducer(state, action) {
 				if (story.isUnlockYet(state.counter)) {
 					story.unlock(); // Set story state to "visible"
 					state.story[i].state = story.state;
-					break;
 				}
 			}
 			return state;
@@ -1075,7 +1077,6 @@ exports.default = function (store) {
 		}
 
 		handleStateChange(newState) {
-			console.log('CounterComponent ' + this.store.state.counter);
 			// TODO: update inner HTML based on the new state
 			this.render();
 		}
@@ -1176,7 +1177,6 @@ exports.default = function (store) {
 
 		handleStateChange(newState) {
 			this.render(); // Refresh the HTML content
-			console.log(this.store.state);
 		}
 
 		connectedCallback() {
@@ -1250,6 +1250,9 @@ exports.default = function (store) {
 			// TODO: initial DOM rendering of story itself
 			this.render();
 
+			// Create a variable to hold the storyline
+			this.storyline = "You are an aspiring strawberry farmer who wants to create a giant strawberry farm.";
+
 			this.onStateChange = this.handleStateChange.bind(this);
 		}
 
@@ -1268,10 +1271,22 @@ exports.default = function (store) {
 			this.store.unsubscribe(this.onStateChange);
 		}
 
+		addStoryLine(description) {
+			this.storyline = this.storyline + '<br>' + description;
+		}
+
 		render() {
+			// Check to see if the storyline should be updated
+			for (var i = 0; i < this.store.state.story.length; i++) {
+				const story = this.store.state.story[i];
+				if (story.state === 'visible' && !this.storyline.includes(story.description)) {
+					this.addStoryLine(story.description);
+				}
+			}
+
 			this.innerHTML = `
 			<div id="story_book">
-				<h4>You are an aspiring strawberry farmer who wants to create a giant strawberry farm.</h4>
+				<h4>${this.storyline}</h4>
 			</div>`;
 		}
 	};

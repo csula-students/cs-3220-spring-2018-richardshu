@@ -16,15 +16,18 @@ export function loop (store) {
 	for (var i = 0; i < store.state.generators.length; i++) {
 		const generator = new Generator(store.state.generators[i]);
 		store.dispatch({
-			action: constants.actions.INCREMENT,
+			type: constants.actions.INCREMENT,
 			payload: generator.generate()
 		});
 	}
 
-	// TODO: triggers stories from story to display state if they are passed
+	// TODO: triggers stories from story to display state if they are past
 	//       the `triggeredAt` points
 	// hint: use store.dispatch to send event for changing events state
-	
+	store.dispatch({
+		type: constants.actions.CHECK_STORY,
+		payload: store.state
+	});
 
 	// recursively calls loop method every second
 	setTimeout(loop.bind(this, store), interval);

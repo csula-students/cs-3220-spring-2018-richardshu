@@ -16,7 +16,6 @@ export default function (store) {
 
 		handleStateChange (newState) {
 			this.render(); // Refresh the HTML content
-			console.log(this.store.state);
 		}
 
 		connectedCallback () {
