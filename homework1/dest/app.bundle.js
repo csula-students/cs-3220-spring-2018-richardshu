@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 2);
+/******/ 	return __webpack_require__(__webpack_require__.s = 3);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -76,9 +76,11 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = {
 	growthRatio: 0.05,
 	actions: {
-		EXAMPLE: 'EXAMPLE_MUTATION',
 		BUTTON_CLICK: 'BUTTON_CLICK',
-		BUY_GENERATOR: 'BUY_GENERATOR'
+		BUY_GENERATOR: 'BUY_GENERATOR',
+		CHECK_STORY: 'CHECK_STORY',
+		EXAMPLE: 'EXAMPLE_MUTATION',
+		INCREMENT: 'INCREMENT'
 	}
 };
 
@@ -149,35 +151,81 @@ exports.default = Generator;
 "use strict";
 
 
-__webpack_require__(3);
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+class Story {
+	/**
+  * create a new story based on the meta passed in argument
+  * @constructor
+  * @param {object} meta - the meta data for story
+  */
+	constructor(meta) {
+		this.name = meta.name;
+		this.description = meta.description;
+		this.triggeredAt = meta.triggeredAt;
+		this.state = meta.state;
+	}
 
-var _game = __webpack_require__(6);
+	/**
+  * isUnlockYet checks if this story is ready to be unlocked yet
+  * @param {number} numberOfResources - the resource value at the moment
+  * @return {boolean} if this story is unlockable
+  */
+	isUnlockYet(numberOfResources) {
+		// TODO: implement based on doc
+		if (numberOfResources >= this.triggeredAt) {
+			return true;
+		}
+		return false;
+	}
 
-var _store = __webpack_require__(7);
+	/**
+  * unlock simply unlock the story to visible state
+  */
+	unlock() {
+		// TODO: change the story state to "visible"
+		this.state = 'visible';
+	}
+}
+exports.default = Story;
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(4);
+
+var _game = __webpack_require__(7);
+
+var _store = __webpack_require__(8);
 
 var _store2 = _interopRequireDefault(_store);
 
-var _reducer = __webpack_require__(8);
+var _reducer = __webpack_require__(9);
 
 var _reducer2 = _interopRequireDefault(_reducer);
 
-var _button = __webpack_require__(9);
+var _button = __webpack_require__(10);
 
 var _button2 = _interopRequireDefault(_button);
 
-var _counter = __webpack_require__(10);
+var _counter = __webpack_require__(11);
 
 var _counter2 = _interopRequireDefault(_counter);
 
-var _example = __webpack_require__(11);
+var _example = __webpack_require__(12);
 
 var _example2 = _interopRequireDefault(_example);
 
-var _generator = __webpack_require__(12);
+var _generator = __webpack_require__(13);
 
 var _generator2 = _interopRequireDefault(_generator);
 
-var _storyBook = __webpack_require__(13);
+var _storyBook = __webpack_require__(14);
 
 var _storyBook2 = _interopRequireDefault(_storyBook);
 
@@ -256,7 +304,7 @@ function main() {
 			description: 'Click click click! Harvest strawberries one click at a time',
 			rate: 5,
 			quantity: 0,
-			baseCost: 10,
+			baseCost: 1,
 			unlockValue: 1
 		}, {
 			type: 'autonomous',
@@ -264,7 +312,7 @@ function main() {
 			description: 'Old McDonald had a strawberry farm...',
 			rate: 10,
 			quantity: 0,
-			baseCost: 100,
+			baseCost: 10,
 			unlockValue: 10
 		}, {
 			type: 'autonomous',
@@ -272,7 +320,7 @@ function main() {
 			description: 'Vroom vroom...tractors coming through!',
 			rate: 20,
 			quantity: 0,
-			baseCost: 1000,
+			baseCost: 100,
 			unlockValue: 100
 		}, {
 			type: 'autonomous',
@@ -280,7 +328,7 @@ function main() {
 			description: 'Unlock a strawberry mine!',
 			rate: 30,
 			quantity: 0,
-			baseCost: 10000,
+			baseCost: 1000,
 			unlockValue: 1000
 		}, {
 			type: 'autonomous',
@@ -288,7 +336,7 @@ function main() {
 			description: 'Strawberry mass production galore',
 			rate: 60,
 			quantity: 0,
-			baseCost: 100000,
+			baseCost: 10000,
 			unlockValue: 10000
 		}, {
 			type: 'autonomous',
@@ -296,10 +344,40 @@ function main() {
 			description: 'A massive strawberry explosion',
 			rate: 120,
 			quantity: 0,
-			baseCost: 1000000,
+			baseCost: 100000,
 			unlockValue: 100000
 		}],
-		story: []
+		story: [{
+			name: 'Clicker',
+			description: 'Clicker is now available',
+			triggeredAt: 10,
+			state: 'hidden'
+		}, {
+			name: 'Farmer',
+			description: 'The farmers have arrived',
+			triggeredAt: 100,
+			state: 'hidden'
+		}, {
+			name: 'Tractor',
+			description: 'Tractors for sale',
+			triggeredAt: 1000,
+			state: 'hidden'
+		}, {
+			name: 'Mine',
+			description: 'A new mine has been found!',
+			triggeredAt: 10000,
+			state: 'hidden'
+		}, {
+			name: 'Factory',
+			description: 'The factory is now open',
+			triggeredAt: 100000,
+			state: 'hidden'
+		}, {
+			name: 'Nuclear Bomb',
+			description: 'The scientists have invented the nuclear bomb',
+			triggeredAt: 1000000,
+			state: 'hidden'
+		}]
 	};
 
 	// initialize store
@@ -325,7 +403,7 @@ function main() {
 }
 
 /***/ }),
-/* 3 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function(){/*
@@ -526,10 +604,10 @@ Eg.whenReady(function(){requestAnimationFrame(function(){window.WebComponents.re
 
 //# sourceMappingURL=webcomponents-lite.js.map
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4), __webpack_require__(5)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(6)))
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports) {
 
 var g;
@@ -556,7 +634,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -746,7 +824,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -756,7 +834,17 @@ Object.defineProperty(exports, "__esModule", {
 	value: true
 });
 exports.loop = loop;
-exports.increment = increment;
+
+var _constants = __webpack_require__(0);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+var _generator = __webpack_require__(1);
+
+var _generator2 = _interopRequireDefault(_generator);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 // default interval as 1 second
 const interval = 1000;
 
@@ -768,19 +856,29 @@ function loop(store) {
 	// TODO: increment counter based on the generators in the state
 	// hint: read how many "generators" in store and iterate through them to
 	//       count how many value to increment to "resource"
+	// hint: remember to change event through `store.dispatch`
+	for (var i = 0; i < store.state.generators.length; i++) {
+		const generator = new _generator2.default(store.state.generators[i]);
+		store.dispatch({
+			type: _constants2.default.actions.INCREMENT,
+			payload: generator.generate()
+		});
+	}
 
-
-	// TODO: triggers stories from story to display state if they are passed
+	// TODO: triggers stories from story to display state if they are past
 	//       the `triggeredAt` points
+	// hint: use store.dispatch to send event for changing events state
+	store.dispatch({
+		type: _constants2.default.actions.CHECK_STORY,
+		payload: store.state
+	});
+
+	// recursively calls loop method every second
 	setTimeout(loop.bind(this, store), interval);
 }
 
-function increment(state, modifier = 1) {
-	return state.counter + 1 * modifier;
-}
-
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -851,7 +949,7 @@ function deepCopy(obj) {
 }
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -870,6 +968,10 @@ var _generator = __webpack_require__(1);
 
 var _generator2 = _interopRequireDefault(_generator);
 
+var _story = __webpack_require__(2);
+
+var _story2 = _interopRequireDefault(_story);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function reducer(state, action) {
@@ -880,18 +982,36 @@ function reducer(state, action) {
 			return state;
 
 		case _constants2.default.actions.BUTTON_CLICK:
-			state.counter++;
+			// Rounding is necessary to avoid floating point approximations
+			state.counter = +(state.counter + 1).toFixed(2);
 			return state;
 
 		case _constants2.default.actions.BUY_GENERATOR:
 			for (var i = 0; i < state.generators.length; i++) {
 				const generator = new _generator2.default(state.generators[i]);
 				if (generator.name === action.payload.name) {
-					state.counter = state.counter - generator.getCost(); // Subtract the generator cost from the total # of strawberries
-					state.generators[i].quantity = action.payload.quantity; // Update the generator quantity
-					return state;
+					// Subtract the generator cost from the total # of strawberries
+					state.counter = +(state.counter - generator.getCost()).toFixed(2);
+					// Update the generator quantity
+					state.generators[i].quantity = action.payload.quantity;
+					break;
 				}
 			}
+			return state;
+
+		case _constants2.default.actions.CHECK_STORY:
+			for (var i = 0; i < state.story.length; i++) {
+				const story = new _story2.default(state.story[i]);
+				if (story.isUnlockYet(state.counter)) {
+					story.unlock(); // Set story state to "visible"
+					state.story[i].state = story.state;
+				}
+			}
+			return state;
+
+		case _constants2.default.actions.INCREMENT:
+			state.counter = +(state.counter + action.payload).toFixed(2);
+			return state;
 
 		default:
 			return state;
@@ -899,7 +1019,7 @@ function reducer(state, action) {
 }
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -915,8 +1035,6 @@ exports.default = function (store) {
 			super();
 			this.store = store;
 
-			this.onStateChange = this.handleStateChange.bind(this);
-
 			// TODO: render generator initial view
 			this.innerHTML = '<button id="increment_button">Harvest Strawberry</button>';
 
@@ -926,24 +1044,6 @@ exports.default = function (store) {
 					type: _constants2.default.actions.BUTTON_CLICK
 				});
 			});
-		}
-
-		handleStateChange(newState) {
-			const strawberry_count = document.getElementById('strawberry_count');
-			strawberry_count.innerHTML = newState.counter;
-			console.log(this.store.state.counter);
-		}
-
-		// InnerHTML rendering, this code executes once when you create the object in HTML 
-		connectedCallback() {
-			console.log(this);
-			console.log('ButtonComponent#onConnectedCallback', this);
-			this.store.subscribe(this.onStateChange);
-		}
-
-		disconnectedCallback() {
-			console.log('ButtonComponent#onDisconnectedCallback', this);
-			this.store.unsubscribe(this.onStateChange);
 		}
 	};
 };
@@ -955,7 +1055,7 @@ var _constants2 = _interopRequireDefault(_constants);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -971,27 +1071,34 @@ exports.default = function (store) {
 			super();
 			this.store = store;
 			// TODO: render counter inner HTML based on the store state
+			this.render();
 
 			this.onStateChange = this.handleStateChange.bind(this);
 		}
 
 		handleStateChange(newState) {
-			console.log('CounterComponent#stateChange', this, newState);
 			// TODO: update inner HTML based on the new state
+			this.render();
 		}
 
 		connectedCallback() {
+			console.log('CounterComponent#onConnectedCallback', this);
 			this.store.subscribe(this.onStateChange);
 		}
 
 		disconnectedCallback() {
+			console.log('CounterComponent#onDisconnectedCallback', this);
 			this.store.unsubscribe(this.onStateChange);
+		}
+
+		render() {
+			this.innerHTML = `<h2>${this.store.state.counter}</h2>`;
 		}
 	};
 };
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1045,7 +1152,7 @@ var _constants2 = _interopRequireDefault(_constants);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1062,28 +1169,14 @@ exports.default = function (store) {
 			this.store = store;
 
 			// TODO: render generator initial view
-			this.innerHTML = this.render();
+			this.render();
 
 			// TODO: subscribe to store on change event
 			this.onStateChange = this.handleStateChange.bind(this);
-			// const generatorButton = document.querySelector(`[data-id="${this.dataset.id}"] > .generator-box > .generator-footer > .generator-button`);
-			// generatorButton.onStateChange = this.handleStateChange.bind(this);
-
-			// TODO: add click event
-			this.addEventListener('click', () => {
-				this.store.dispatch({
-					type: _constants2.default.actions.BUY_GENERATOR,
-					payload: {
-						name: this.store.state.generators[this.dataset.id].name,
-						quantity: this.store.state.generators[this.dataset.id].quantity + 1
-					}
-				});
-			});
 		}
 
 		handleStateChange(newState) {
-			this.innerHTML = this.render(); // Refresh the HTML content
-			console.log(this.store.state);
+			this.render(); // Refresh the HTML content
 		}
 
 		connectedCallback() {
@@ -1098,7 +1191,7 @@ exports.default = function (store) {
 
 		render() {
 			const generator = new _generator2.default(this.store.state.generators[this.dataset.id]);
-			return `
+			this.innerHTML = `
 			<div class="generator-box">
 				<div class="generator-header">
 					<h3>${generator.name}</h3>
@@ -1108,11 +1201,21 @@ exports.default = function (store) {
 					<h4>${generator.description}</h4>
 				</div>
 				<div class="generator-footer">
-					<h4>${generator.generate()}/60</h4>
+					<h4>${generator.rate}/60</h4>
 					<button class="generator-button">${generator.getCost()} Strawberries</button>
 				</div>
-			</div>
-			`;
+			</div>`;
+
+			// TODO: update the quantity of generators
+			this.querySelector('.generator-button').addEventListener('click', () => {
+				this.store.dispatch({
+					type: _constants2.default.actions.BUY_GENERATOR,
+					payload: {
+						name: this.store.state.generators[this.dataset.id].name,
+						quantity: this.store.state.generators[this.dataset.id].quantity + 1
+					}
+				});
+			});
 		}
 	};
 };
@@ -1128,7 +1231,7 @@ var _generator2 = _interopRequireDefault(_generator);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1144,22 +1247,60 @@ exports.default = function (store) {
 			super();
 			this.store = store;
 
+			// TODO: initial DOM rendering of story itself
+			this.render();
+
+			// Create a variable to hold the storyline
+			this.storyline = "You are an aspiring strawberry farmer who wants to create a giant strawberry farm.";
+
 			this.onStateChange = this.handleStateChange.bind(this);
 		}
 
 		handleStateChange(newState) {
 			// TODO: display story based on the state "resource" and "stories"
+			this.render(); // Update the story
 		}
 
 		connectedCallback() {
+			console.log('StoryBookComponent#onConnectedCallback', this);
 			this.store.subscribe(this.onStateChange);
 		}
 
 		disconnectedCallback() {
+			console.log('StoryBookComponent#onDisconnectedCallback', this);
 			this.store.unsubscribe(this.onStateChange);
+		}
+
+		addStoryLine(description) {
+			this.storyline = this.storyline + '<br>' + description;
+		}
+
+		render() {
+			// Check to see if the storyline should be updated
+			for (var i = 0; i < this.store.state.story.length; i++) {
+				const story = this.store.state.story[i];
+				if (story.state === 'visible' && !this.storyline.includes(story.description)) {
+					this.addStoryLine(story.description);
+				}
+			}
+
+			this.innerHTML = `
+			<div id="story_book">
+				<h4>${this.storyline}</h4>
+			</div>`;
 		}
 	};
 };
+
+var _constants = __webpack_require__(0);
+
+var _constants2 = _interopRequireDefault(_constants);
+
+var _story = __webpack_require__(2);
+
+var _story2 = _interopRequireDefault(_story);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ })
 /******/ ]);
