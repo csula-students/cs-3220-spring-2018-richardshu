@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.RequestDispatcher;
 
 import edu.csula.storage.servlet.EventsDAOImpl;
 import edu.csula.storage.EventsDAO;
@@ -19,25 +20,13 @@ public class AdminEditEventServlet extends HttpServlet {
 	@Override
 	public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
 
 		// TODO: render the events page HTML
 		EventsDAO dao = new EventsDAOImpl(getServletContext());
 
-		// Form for editing the events
-		StringBuilder html = new StringBuilder();
-		html.append("<form method='POST'>");
-		html.append("	<label for='event_name'></label>");
-		html.append("	<input name='event_name' class='input-box left-margin' placeholder='Enter the event name:' required><br/>");
-		html.append("	<label for='event_description'></label>");
-		html.append("	<input name='event_description' class='input-box left-margin' placeholder='Enter the event description:' required><br/>");
-		html.append("	<label for='trigger'></label>");
-		html.append("	<input name='trigger' class='input-box left-margin' placeholder='Trigger at:' required><br/>");
-		html.append("	<button class='btn'><h4><a>Edit</a></h4></button>");
-		html.append("</form>");
-
-		// Render the table
-		out.println(html);
+		// Connect the servlet with the JSP file
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/admin-events-edit.jsp");
+		dispatcher.forward(request, response);
 	}
 
 
