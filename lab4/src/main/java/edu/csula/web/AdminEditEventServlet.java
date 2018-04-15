@@ -23,7 +23,6 @@ public class AdminEditEventServlet extends HttpServlet {
 
 		// TODO: render the events page HTML
 		EventsDAO dao = new EventsDAOImpl(getServletContext());
-		Collection<Event> events = dao.getAll();
 
 		// Form for editing the events
 		StringBuilder html = new StringBuilder();

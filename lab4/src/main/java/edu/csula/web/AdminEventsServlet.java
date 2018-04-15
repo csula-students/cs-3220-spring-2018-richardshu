@@ -63,7 +63,7 @@ public class AdminEventsServlet extends HttpServlet {
 			html.append("	<td>" + e.getTriggerAt() + "</td>");
 
 			// Send the id through the URL
-			html.append("	<td><a href='./events/edit?id=" + e.getId() + "'>Edit</a> | <a href='./events/delete" + e.getId() + "'>Delete</a></td>");
+			html.append("	<td><a href='./events/edit?id=" + e.getId() + "'>Edit</a> | <a href='./events/remove?id=" + e.getId() + "'>Delete</a></td>");
 			html.append("</tr>");
 		}
 
