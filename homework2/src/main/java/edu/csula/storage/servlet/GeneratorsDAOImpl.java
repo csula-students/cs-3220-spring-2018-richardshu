@@ -71,6 +71,7 @@ public class GeneratorsDAOImpl implements GeneratorsDAO {
 				g.setRate(generator.getRate());
 				g.setBaseCost(generator.getBaseCost());
 				g.setUnlockAt(generator.getUnlockAt());
+				break;
 			}
 		}
 
@@ -95,6 +96,7 @@ public class GeneratorsDAOImpl implements GeneratorsDAO {
 		for (int i = 0; i < generators.size(); i++) {
 			if (generators.get(i).getId() == id) {
 				generators.remove(i);
+				break;
 			}
 		}
 

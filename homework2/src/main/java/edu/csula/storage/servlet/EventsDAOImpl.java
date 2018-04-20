@@ -51,12 +51,10 @@ public class EventsDAOImpl implements EventsDAO {
 	public Optional<Event> getById(int id) {
 		// TODO: get a certain event given its id from context (see getAll() on
 		// getting a list first and get a certain one from the list)
-		
 		List<Event> events = getAll();
-		for (int i = 0; i < events.size(); i++) {
-			Event event = events.get(i);
-			if (event.getId() == id) {
-				return Optional.of(event);
+		for (Event e : events) {
+			if (e.getId() == id) {
+				return Optional.of(e);
 			}
 		}
 		return Optional.empty();
@@ -68,11 +66,11 @@ public class EventsDAOImpl implements EventsDAO {
 		List<Event> events = getAll();
 
 		// HINT: use a for loop
-		for (int i = 0; i < events.size(); i++) {
-			if (events.get(i).getId() == id) {
-				events.get(i).setName(event.getName());
-				events.get(i).setDescription(event.getDescription());
-				events.get(i).setTriggerAt(event.getTriggerAt());
+		for (Event e : events) {
+			if (e.getId() == id) {
+				e.setName(event.getName());
+				e.setDescription(event.getDescription());
+				e.setTriggerAt(event.getTriggerAt());
 				break;
 			}
 		}
