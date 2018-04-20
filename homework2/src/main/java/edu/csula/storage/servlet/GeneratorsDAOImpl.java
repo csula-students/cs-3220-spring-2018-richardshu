@@ -41,27 +41,64 @@ public class GeneratorsDAOImpl implements GeneratorsDAO {
 	@Override
 	public List<Generator> getAll() {
 		// TODO: get a list of generators from the context
-		return new ArrayList<>();
+		Object generators = context.getAttribute(CONTEXT_NAME);
+		if (generators == null) {
+			return new ArrayList<>();
+		}
+		return (List<Generator>) generators;
 	}
 
 	@Override
 	public Optional<Generator> getById(int id) {
 		// TODO: get a certain generator from context
+		List<Generator> generators = getAll();
+		for (Generator g : generators) {
+			if (g.getId() == id) {
+				return Optional.of(g);
+			}
+		}
 		return Optional.empty();
 	}
 
 	@Override
 	public void set(int id, Generator generator) {
 		// TODO: change a certain generator from context
+		List<Generator> generators = getAll();
+		for (Generator g : generators) {
+			if (g.getId() == id) {
+				g.setName(generator.getName());
+				g.setDescription(generator.getDescription());
+				g.setRate(generator.getRate());
+				g.setBaseCost(generator.getBaseCost());
+				g.setUnlockAt(generator.getUnlockAt());
+			}
+		}
+
+		// Call setAttribute since the list is mutated
+		context.setAttribute(CONTEXT_NAME, generators);
 	}
 
 	@Override
 	public void add(Generator generator) {
 		// TODO: add a new generator to the context
+		List<Generator> generators = getAll();
+		generators.add(generator);
+
+		// Call setAttribute since the list is mutated
+		context.setAttribute(CONTEXT_NAME, generators);
 	}
 
 	@Override
 	public void remove(int id) {
 		// TODO: remove a single generator from the context
+		List<Generator> generators = getAll();
+		for (int i = 0; i < generators.size(); i++) {
+			if (generators.get(i).getId() == id) {
+				generators.remove(i);
+			}
+		}
+
+		// Call setAttribute since the list is mutated
+		context.setAttribute(CONTEXT_NAME, generators);
 	}
 }
