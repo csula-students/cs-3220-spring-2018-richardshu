@@ -19,52 +19,56 @@
 		<link rel="stylesheet" href="../style.css">
 	</head>
 	<body>
-		<h1 id='title' class='text-center'>Incremental Game Framework</h1>
-		<nav class='text-center'>
+		<h1 id="title" class="text-center">Incremental Game Framework</h1>
+		<nav class="text-center">
 			<ul>
-				<li><a href='#'><h3>Game Information</h3></a></li>
-				<li><a href='#'><h3>Generators</h3></a></li>
-				<li><a href='#'><h3>Events</h3></a></li>
+				<li><a href="#"><h3>Game Information</h3></a></li>
+				<li><a href="#"><h3>Generators</h3></a></li>
+				<li><a href="#"><h3>Events</h3></a></li>
 			</ul>
 		</nav>
-		<div class='text-center'>
-			<form method='POST'>
-				<label for='event_name'></label>
-				<input name='event_name' class='input-box' placeholder='Enter the event name:' required><br/>
-				<label for='event_description'></label>
-				<input name='event_description' class='input-box' placeholder='Enter the event description:' required><br/>
-				<label for='trigger'></label>
-				<input name='trigger' class='input-box' placeholder='Trigger at:' required><br/>
-				<button class='btn'><h4>Add</h4></button>
+		<div class="text-center">
+			<form method="POST">
+				<label for="event_name"></label>
+				<input name="event_name" class="input-box" placeholder="Event name" required><br/>
+				<label for="event_description"></label>
+				<input name="event_description" class="input-box" placeholder="Event description" required><br/>
+				<label for="trigger"></label>
+				<input name="trigger" class="input-box" placeholder="Trigger value" required><br/>
+				<button class="btn"><h4>Add</h4></button>
 			</form>
 		</div>
 		
 
 		<!-- Create the table header -->
 		<div class="text-center">
-			<table>
-				<tr>
-					<th>ID</th>
-					<th>Name</th>
-					<th>Description</th>
-					<th>Trigger At</th>
-				</tr>
-
-				<!-- Add each event to the table -->
-				<c:forEach items="${events}" var="event">
+			<table class="table table-bordered">
+				<thead class="thead-light">
 					<tr>
-						<td>${event.getId()}</td>
-						<td>${event.getName()}</td>
-						<td>${event.getDescription()}</td>
-						<td>${event.getTriggerAt()}</td>
-
-						<!-- Send the id through the URL -->
-						<td>
-							<a href="./events/edit?id=${event.getId()}">Edit</a> | 
-							<a href="./events/remove?id=${event.getId()}">Delete</a>
-						</td>
+						<th>ID</th>
+						<th>Name</th>
+						<th>Description</th>
+						<th>Trigger At</th>
+						<th>Action</th>
 					</tr>
-				</c:forEach>
+				</thead>
+				<tbody>
+					<!-- Add each event to the table -->
+					<c:forEach items="${events}" var="event">
+						<tr>
+							<td>${event.getId()}</td>
+							<td>${event.getName()}</td>
+							<td>${event.getDescription()}</td>
+							<td>${event.getTriggerAt()}</td>
+	
+							<!-- Send the id through the URL -->
+							<td>
+								<a href="./events/edit?id=${event.getId()}">Edit</a> | 
+								<a href="./events/remove?id=${event.getId()}">Delete</a>
+							</td>
+						</tr>
+					</c:forEach>
+				</tbody>
 			</table>
 		</div>
 	</body>

@@ -2,7 +2,7 @@
 	margin-top: 10%;
 }
 
-h1, h2, h3, h4, h5, h6 {
+body {
 	font-family: Bree Serif;
 }
 
@@ -33,14 +33,13 @@ nav ul li a:hover {
 
 .input-box {
 	width: 55%;
-	padding: 10px;
+	padding: 0.5em;
 	font-size: 150%;
 	font-family: Bree Serif;
 }
 
 button {
-	display: block;
-	margin: auto;
+	margin: 1em;
 }
 
 button:hover {
