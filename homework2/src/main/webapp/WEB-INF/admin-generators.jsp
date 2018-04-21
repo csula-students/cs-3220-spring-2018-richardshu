@@ -49,6 +49,7 @@
 						<th>Rate</th>
 						<th>Cost</th>
 						<th>Unlock At</th>
+						<th>Description</th>
 						<th>Actions</th>
 					</tr>
 				</thead>
@@ -61,6 +62,7 @@
 							<td>${generator.getRate()}</td>
 							<td>${generator.getBaseCost()}</td>
 							<td>${generator.getUnlockAt()}</td>
+							<td>${generator.getDescription()}</td>
 	
 							<!-- Send the id through the URL -->
 							<td>
@@ -71,6 +73,8 @@
 					</c:forEach>
 				</tbody>
 			</table>
+
+			<!-- Log out button -->
 			<a href="auth"><h3>Log out</h3></a>
 		</div>
 	</body>
