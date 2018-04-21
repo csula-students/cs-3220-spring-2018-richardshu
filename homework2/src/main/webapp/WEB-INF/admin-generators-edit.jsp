@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
 	<head>
 		<!-- Metadata -->
@@ -17,13 +17,15 @@
 		<link rel="stylesheet" href="../style.css">
 	</head>
 	<body>
-		<h1 id="title" class="text-center">Edit Event</h1>
+		<h1 id="title" class="text-center">Edit Generator</h1>
 		
-		<!-- Form for editing the events -->
+		<!-- Form for editing the generators -->
 		<form method="POST">
-			<input name="event_name" class="input-box left-margin" placeholder="New event name" required><br/>
-			<input name="event_description" class="input-box left-margin" placeholder="New event description" required><br/>
-			<input name="trigger" class="input-box left-margin" placeholder="New trigger value" required><br/>
+			<input name="generator_name" class="input-box" placeholder="Generator name" required><br/>
+			<input name="generator_rate" class="input-box" placeholder="Generator rate" required><br/>
+			<input name="base_cost" class="input-box" placeholder="Base cost" required><br/>
+			<input name="unlock_at" class="input-box" placeholder="Unlock at" required><br/>
+			<textarea name="description" class="input-box" placeholder="Description" required></textarea><br/>
 			<button class="btn"><h4><a>Edit</a></h4></button>
 		</form>
 	</body>

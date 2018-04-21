@@ -29,11 +29,8 @@
 		</nav>
 		<div class="text-center">
 			<form method="POST">
-				<label for="event_name"></label>
 				<input name="event_name" class="input-box" placeholder="Event name" required><br/>
-				<label for="event_description"></label>
 				<input name="event_description" class="input-box" placeholder="Event description" required><br/>
-				<label for="trigger"></label>
 				<input name="trigger" class="input-box" placeholder="Trigger value" required><br/>
 				<button class="btn"><h4>Add</h4></button>
 			</form>
