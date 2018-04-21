@@ -35,6 +35,17 @@ public class AdminGeneratorsServlet extends HttpServlet {
 	@Override
 	public void doPost( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO: handle upsert transaction
-		
+		String name = request.getParameter("generator_name");
+		String description = request.getParameter("description");
+		int rate = Integer.parseInt(request.getParameter("generator_rate"));
+		int baseCost = Integer.parseInt(request.getParameter("base_cost"));
+		int unlockAt = Integer.parseInt(request.getParameter("unlock_at"));
+
+		GeneratorsDAO dao = new GeneratorsDAOImpl(getServletContext());
+		Collection<Generator> generators = dao.getAll();
+		dao.add(new Generator(generators.size(), name, description, rate, baseCost, unlockAt));
+
+		// Stay on the generators page after the form is submitted
+		response.sendRedirect("../admin/generators");
 	}
 }
