@@ -20,6 +20,9 @@ public class AuthenticationServlet extends HttpServlet {
 	public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 
+		// This is necessary for the log out feature to work
+		doDelete(request, response);
+
 		// Connect the servlet with the JSP file
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/user-authentication.jsp");
 		dispatcher.forward(request, response);

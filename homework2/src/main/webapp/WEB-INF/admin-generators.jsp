@@ -71,6 +71,7 @@
 					</c:forEach>
 				</tbody>
 			</table>
+			<a href="auth"><h3>Log out</h3></a>
 		</div>
 	</body>
 </html>

@@ -36,7 +36,6 @@
 			</form>
 		</div>
 		
-
 		<!-- Create the table header -->
 		<div class="text-center">
 			<table class="table table-bordered">
@@ -67,6 +66,9 @@
 					</c:forEach>
 				</tbody>
 			</table>
+
+			<!-- Log out button -->
+			<a href="auth"><h3>Log out</h3></a>
 		</div>
 	</body>
 </html>
