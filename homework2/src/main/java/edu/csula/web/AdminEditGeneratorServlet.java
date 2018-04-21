@@ -15,11 +15,21 @@ import edu.csula.storage.servlet.GeneratorsDAOImpl;
 import edu.csula.storage.GeneratorsDAO;
 import edu.csula.models.Generator;
 
+import edu.csula.storage.servlet.UsersDAOImpl;
+import edu.csula.storage.UsersDAO;
+
 @WebServlet("/admin/generators/edit")
 public class AdminEditGeneratorServlet extends HttpServlet {
 	@Override
 	public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
+
+		UsersDAO userDao = new UsersDAOImpl(request.getSession());
+
+		// If the user is not logged in, redirect to the login page
+		if (!userDao.getAuthenticatedUser().isPresent()) {
+			response.sendRedirect("../../admin/auth");
+		}
 
 		// TODO: render the events page HTML
 		GeneratorsDAO dao = new GeneratorsDAOImpl(getServletContext());

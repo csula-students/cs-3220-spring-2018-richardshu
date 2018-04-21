@@ -1,7 +1,6 @@
 package edu.csula.web;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Collection;
 
 import javax.servlet.ServletException;
@@ -15,13 +14,23 @@ import edu.csula.storage.servlet.EventsDAOImpl;
 import edu.csula.storage.EventsDAO;
 import edu.csula.models.Event;
 
+import edu.csula.storage.servlet.UsersDAOImpl;
+import edu.csula.storage.UsersDAO;
+
 @WebServlet("/admin/events")
 public class AdminEventsServlet extends HttpServlet {
 	@Override
 	public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 
-		// TODO: render the events page HTML
+		UsersDAO userDao = new UsersDAOImpl(request.getSession());
+
+		// If the user is not logged in, redirect to the login page
+		if (!userDao.getAuthenticatedUser().isPresent()) {
+			response.sendRedirect("../admin/auth");
+		}
+
+		// Render the events page HTML
 		EventsDAO dao = new EventsDAOImpl(getServletContext());
 		Collection<Event> events = dao.getAll();
 
