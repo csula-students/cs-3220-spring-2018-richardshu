@@ -13,11 +13,21 @@ import edu.csula.storage.servlet.EventsDAOImpl;
 import edu.csula.storage.EventsDAO;
 import edu.csula.models.Event;
 
+import edu.csula.storage.servlet.UsersDAOImpl;
+import edu.csula.storage.UsersDAO;
+
 @WebServlet("/admin/events/remove")
 public class AdminRemoveEventServlet extends HttpServlet {
 	@Override
 	public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
+
+		UsersDAO userDao = new UsersDAOImpl(request.getSession());
+
+		// If the user is not logged in, redirect to the login page
+		if (!userDao.getAuthenticatedUser().isPresent()) {
+			response.sendRedirect("../../admin/auth");
+		}
 
 		// TODO: render the events page HTML
 		EventsDAO dao = new EventsDAOImpl(getServletContext());
