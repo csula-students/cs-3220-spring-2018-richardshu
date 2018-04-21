@@ -23,8 +23,8 @@
 		<nav class="text-center">
 			<ul>
 				<li><a href="#"><h3>Game Information</h3></a></li>
-				<li><a href="#"><h3>Generators</h3></a></li>
-				<li><a href="#"><h3>Events</h3></a></li>
+				<li><a href="generators"><h3>Generators</h3></a></li>
+				<li><a href="events"><h3>Events</h3></a></li>
 			</ul>
 		</nav>
 		<div class="text-center">

@@ -34,17 +34,18 @@ public class AdminEventsServlet extends HttpServlet {
 
 	@Override
 	public void doPost( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO: handle upsert transaction
-
+		
+		// Grab the event information from the form
 		String name = request.getParameter("event_name");
 		String description = request.getParameter("event_description");
 		int triggerAt = Integer.parseInt(request.getParameter("trigger"));
 
+		// Add the new generator and store it in the server
 		EventsDAO dao = new EventsDAOImpl(getServletContext());
 		Collection<Event> events = dao.getAll();
-
 		dao.add(new Event(events.size(), name, description, triggerAt));
 
+		// Stay on the events page after the form is submitted
 		response.sendRedirect("../admin/events");
 	}
 }
