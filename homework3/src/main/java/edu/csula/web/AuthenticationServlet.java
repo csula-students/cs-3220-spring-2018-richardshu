@@ -24,7 +24,7 @@ public class AuthenticationServlet extends HttpServlet {
 		doDelete(request, response);
 
 		// Connect the servlet with the JSP file
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/user-authentication.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/admin-authentication.jsp");
 		dispatcher.forward(request, response);
 	}
 
