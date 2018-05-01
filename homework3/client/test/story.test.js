@@ -6,15 +6,15 @@ describe('Story model', () => {
 	test('Story should be able to check if itself is unlocked yet', () => {
 		let counter = 0;
 		const story = new Story(mock.story);
-		expect(story.isUnlockYet(counter)).toBe(false);
+		expect(story.isUnlockYet(counter)).toEqual(false);
 		counter = 11;
-		expect(story.isUnlockYet(counter)).toBe(true);
+		expect(story.isUnlockYet(counter)).toEqual(true);
 	});
 
 	test('Story should be able to unlock itself', () => {
 		const story = new Story(mock.story);
-		expect(story.state).toBe('hidden');
+		expect(story.state).toEqual('hidden');
 		story.unlock();
-		expect(story.state).toBe('visible');
+		expect(story.state).toEqual('visible');
 	});
 });

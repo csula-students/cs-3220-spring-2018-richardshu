@@ -19,6 +19,8 @@ dependencies {
     compile group: 'javax.servlet.jsp', name: 'javax.servlet.jsp-api', version: '2.3.1'
     // MySQL JDBC
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.45'
+    // GSON to convert Java objects to JSON and vice-versa
+    compile 'com.google.code.gson:gson:2.8.2'
 
     // Declare the dependency for your favourite test framework you want to use in your tests.
     // TestNG is also supported by the Gradle Test task. Just change the

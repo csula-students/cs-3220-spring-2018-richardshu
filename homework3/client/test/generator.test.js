@@ -8,26 +8,26 @@ describe('generator models', () => {
 	test('getCost should return base cost when no quantity', () => {
 		const generator = new Generator(Object.assign({}, mockGenerator));
 		const expected = 10;
-		expect(generator.getCost()).toBe(expected);
+		expect(generator.getCost()).toEqual(expected);
 	});
 
 	test('getCost should return base cost when no quantity', () => {
 		const generator = new Generator(Object.assign({}, mockGenerator, {quantity: 5}));
 		const expected = 12.76;
-		expect(generator.getCost()).toBe(expected);
+		expect(generator.getCost()).toEqual(expected);
 	});
 
 	test('generate should return zero values when no quantity', () => {
 		const generator = new Generator(Object.assign({}, mockGenerator));
 		const expected = 0;
-		expect(generator.generate()).toBe(expected);
+		expect(generator.generate()).toEqual(expected);
 	});
 
 
 	test('generate should return rate * quantiy value when there is quantity', () => {
 		const generator = new Generator(Object.assign({}, mockGenerator, {quantity: 5}));
 		const expected = 50;
-		expect(generator.generate()).toBe(expected);
+		expect(generator.generate()).toEqual(expected);
 	});
 });
 
