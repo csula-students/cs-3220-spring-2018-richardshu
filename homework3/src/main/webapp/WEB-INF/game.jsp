@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Strawberry Clicker</title>
-	<link rel="stylesheet" href="app.css">
+	<link rel="stylesheet" href="../game.css">
 	<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 </head>
 <body>
@@ -27,6 +27,6 @@
 	</div>
 
 	<!-- Import app.bundle.js -->
-	<script src="dest/app.bundle.js"></script>
+	<script src="../app.bundle.js"></script>
 </body>
 </html>

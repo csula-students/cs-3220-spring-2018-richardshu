@@ -14,7 +14,7 @@
 		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Bree Serif">
 		
 		<!-- Styling -->
-		<link rel="stylesheet" href="../style.css">
+		<link rel="stylesheet" href="../app.css">
 	</head>
 	<body>
 		<h1 id="title" class="text-center">Incremental Game Framework</h1>

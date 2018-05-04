@@ -14,17 +14,19 @@
 		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Bree Serif">
 		
 		<!-- Styling -->
-		<link rel="stylesheet" href="../style.css">
+		<link rel="stylesheet" href="../../app.css">
 	</head>
 	<body>
 		<h1 id="title" class="text-center">Edit Event</h1>
 		
 		<!-- Form for editing the events -->
-		<form method="POST">
-			<input name="event_name" class="input-box left-margin" placeholder="New event name" required><br/>
-			<input name="event_description" class="input-box left-margin" placeholder="New event description" required><br/>
-			<input name="trigger" class="input-box left-margin" placeholder="New trigger value" required><br/>
-			<button class="btn"><h4><a>Edit</a></h4></button>
-		</form>
+		<div class="text-center">
+			<form method="POST">
+				<input name="event_name" class="input-box left-margin" placeholder="New event name" required><br/>
+				<input name="event_description" class="input-box left-margin" placeholder="New event description" required><br/>
+				<input name="trigger" class="input-box left-margin" placeholder="New trigger value" required><br/>
+				<button class="btn"><h4><a>Edit</a></h4></button>
+			</form>
+		</div>
 	</body>
 </html>
