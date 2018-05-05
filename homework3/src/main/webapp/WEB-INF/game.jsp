@@ -37,7 +37,7 @@
 
 	<div class="generators">
 		<c:forEach var = "i" begin = "0" end = "${lastGeneratorIndex}">
-			<game-generator class="generator-box" data-id="${i}"></game-generator>
+			<game-generator data-id="${i}"></game-generator>
 		</c:forEach>
 	</div>
 
