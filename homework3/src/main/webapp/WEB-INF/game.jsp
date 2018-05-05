@@ -5,6 +5,9 @@
 	<title>Strawberry Clicker</title>
 	<link rel="stylesheet" href="../game.css">
 	<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+	<script>
+		state = ${state}; // State is passed from the Controrller as a JSON string
+	</script>
 </head>
 <body>
 	<h1 id="title">Strawberry Clicker</h1>
