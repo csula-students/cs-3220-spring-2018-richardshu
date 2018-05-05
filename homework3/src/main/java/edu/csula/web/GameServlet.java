@@ -25,20 +25,32 @@ import com.google.gson.GsonBuilder;
 
 @WebServlet("/game")
 public class GameServlet extends HttpServlet {
-	
+
 	public void init() {
-		System.out.println("Hello world");
+		EventsDAO eventsDao = new EventsDAOImpl(getServletContext());
+		Collection<Event> events = eventsDao.getAll();
+		if (events.size() == 0) {
+			eventsDao.add(new Event(0, "Clicker", "Clicker is now available", 10));
+			eventsDao.add(new Event(1, "Farmer", "The farmers have arrived", 100));
+			eventsDao.add(new Event(2, "Tractor", "Tractors for sale", 1000));
+		}
+
+		GeneratorsDAO generatorsDao = new GeneratorsDAOImpl(getServletContext());
+		Collection<Generator> generators = generatorsDao.getAll();
+		if (generators.size() == 0) {
+			generatorsDao.add(new Generator(0, "Clicker", "Click click click! Harvest strawberries one click at a time", 5, 10, 10));
+			generatorsDao.add(new Generator(1, "Farmer", "Old McDonald had a strawberry farm...", 10, 100, 100));
+			generatorsDao.add(new Generator(2, "Tractor", "Vroom vroom...tractors coming through!", 20, 1000, 1000));
+		}
 	}
 
 	@Override
 	public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 
-		// Get the events
 		EventsDAO eventsDao = new EventsDAOImpl(getServletContext());
 		Collection<Event> events = eventsDao.getAll();
 
-		// Get the generators
 		GeneratorsDAO generatorsDao = new GeneratorsDAOImpl(getServletContext());
 		Collection<Generator> generators = generatorsDao.getAll();
 
@@ -46,17 +58,11 @@ public class GameServlet extends HttpServlet {
 		GsonBuilder builder = new GsonBuilder();
 		Gson gson = builder.create();
 		String state = gson.toJson(new State(events, generators));
-		System.out.println(state);
 
 		// Connect the servlet with the JSP file
 		request.setAttribute("state", state);
+		request.setAttribute("lastGeneratorIndex", generators.size() - 1);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/game.jsp");
 		dispatcher.forward(request, response);
-	}
-
-
-	@Override
-	public void doPost( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// Do nothing
 	}
 }

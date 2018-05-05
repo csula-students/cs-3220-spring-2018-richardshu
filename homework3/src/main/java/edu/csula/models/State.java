@@ -6,11 +6,12 @@ import edu.csula.models.Event;
 import edu.csula.models.Generator;
 
 public class State {
-	private Collection<Event> events;
+	private int counter = 0;
+	private Collection<Event> story;
 	private Collection<Generator> generators;
 
 	public State(Collection<Event> events, Collection<Generator> generators) {
-		this.events = events;
+		this.story = events;
 		this.generators = generators;
 	}
 }

@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +9,21 @@
 	<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 	<script>
 		state = ${state}; // State is passed from the Controrller as a JSON string
+
+		for (var i = 0; i < state.generators.length; i++) {
+			var generator = state.generators[i];
+			generator.type = 'autonomous';
+	        generator.quantity = 0;
+	        generator.unlockValue = generator.unlockAt;
+	    }
+
+	    for (var i = 0; i < state.story.length; i++) {
+	    	var story = state.story[i];
+	    	story.state = 'hidden';
+	    	story.triggeredAt = story.triggerAt;
+	    }
+	    
+	    window.defaultState = state; // Set the state in app.bundle.js to be the JSON string passed in
 	</script>
 </head>
 <body>
@@ -19,14 +36,9 @@
 	</div>
 
 	<div class="generators">
-		<game-generator data-id="0"></game-generator>
-		<game-generator data-id="1"></game-generator>
-		<game-generator data-id="2"></game-generator>
-	</div>
-	<div class="generators">
-		<game-generator data-id="3"></game-generator>
-		<game-generator data-id="4"></game-generator>
-		<game-generator data-id="5"></game-generator>
+		<c:forEach var = "i" begin = "0" end = "${lastGeneratorIndex}">
+			<game-generator class="generator-box" data-id="${i}"></game-generator>
+		</c:forEach>
 	</div>
 
 	<!-- Import app.bundle.js -->
