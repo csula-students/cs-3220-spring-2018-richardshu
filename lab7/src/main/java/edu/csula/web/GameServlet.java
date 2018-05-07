@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 
-import edu.csula.storage.servlet.EventsDAOImpl;
+import edu.csula.storage.mysql.EventsDAOImpl;
 import edu.csula.storage.EventsDAO;
 import edu.csula.models.Event;
 
@@ -23,11 +23,13 @@ import edu.csula.models.State;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import edu.csula.storage.mysql.Database;
+
 @WebServlet("/game")
 public class GameServlet extends HttpServlet {
 
 	public void init() {
-		EventsDAO eventsDao = new EventsDAOImpl(getServletContext());
+		EventsDAO eventsDao = new EventsDAOImpl(new Database());
 		Collection<Event> events = eventsDao.getAll();
 		if (events.size() == 0) {
 			eventsDao.add(new Event(0, "Clicker", "Clicker is now available", 10));
@@ -48,7 +50,7 @@ public class GameServlet extends HttpServlet {
 	public void doGet( HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 
-		EventsDAO eventsDao = new EventsDAOImpl(getServletContext());
+		EventsDAO eventsDao = new EventsDAOImpl(new Database());
 		Collection<Event> events = eventsDao.getAll();
 
 		GeneratorsDAO generatorsDao = new GeneratorsDAOImpl(getServletContext());

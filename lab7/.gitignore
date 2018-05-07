@@ -18,6 +18,8 @@ gradle-app.setting
 src/main/webapp/js/app.bundle.js
 src/main/webapp/js/app.bundle.js.map
 
+src/main/java/edu/csula/models/Credentials.java
+
 tags*
 
 dest/

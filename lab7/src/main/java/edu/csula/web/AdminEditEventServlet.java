@@ -10,12 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 
-import edu.csula.storage.servlet.EventsDAOImpl;
+import edu.csula.storage.mysql.EventsDAOImpl;
 import edu.csula.storage.EventsDAO;
 import edu.csula.models.Event;
 
 import edu.csula.storage.servlet.UsersDAOImpl;
 import edu.csula.storage.UsersDAO;
+
+import edu.csula.storage.mysql.Database;
 
 @WebServlet("/admin/events/edit")
 public class AdminEditEventServlet extends HttpServlet {
@@ -31,7 +33,7 @@ public class AdminEditEventServlet extends HttpServlet {
 		}
 
 		// TODO: render the events page HTML
-		EventsDAO dao = new EventsDAOImpl(getServletContext());
+		EventsDAO dao = new EventsDAOImpl(new Database());
 
 		// Connect the servlet with the JSP file
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/admin-events-edit.jsp");
@@ -47,7 +49,7 @@ public class AdminEditEventServlet extends HttpServlet {
 		String description = request.getParameter("event_description");
 		int triggerAt = Integer.parseInt(request.getParameter("trigger"));
 
-		EventsDAO dao = new EventsDAOImpl(getServletContext());
+		EventsDAO dao = new EventsDAOImpl(new Database());
 		Collection<Event> events = dao.getAll();
 
 		// Replace the old event with the new event

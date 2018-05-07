@@ -4,13 +4,19 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import edu.csula.models.Credentials;
+
 public class Database implements edu.csula.storage.Database{
 	// FIXME: don't hard commit your credential
-	private static final String database = "cs3220_lab";
-	private static final String host = "localhost";
+	private static final String database = "cs3220stu55";
+	//private static final String database = "cs3220stu55";
+	private static final String host = "cs3.calstatela.edu";
+	//private static final String host = "localhost";
 	private static final String url = String.format("jdbc:mysql://%s/%s", host, database);
-	private static final String username = "root";
-	private static final String password = "";
+	private static final String username = Credentials.username;
+	// private static final String username = "root";
+	private static final String password = Credentials.password;
+	// private static final String password = "";
 
 	public Database() {
 		try {

@@ -10,12 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 
-import edu.csula.storage.servlet.EventsDAOImpl;
+import edu.csula.storage.mysql.EventsDAOImpl;
 import edu.csula.storage.EventsDAO;
 import edu.csula.models.Event;
 
 import edu.csula.storage.servlet.UsersDAOImpl;
 import edu.csula.storage.UsersDAO;
+
+import edu.csula.storage.mysql.Database;
 
 @WebServlet("/admin/events")
 public class AdminEventsServlet extends HttpServlet {
@@ -31,7 +33,7 @@ public class AdminEventsServlet extends HttpServlet {
 		}
 
 		// Render the events page HTML
-		EventsDAO dao = new EventsDAOImpl(getServletContext());
+		EventsDAO dao = new EventsDAOImpl(new Database());
 		Collection<Event> events = dao.getAll();
 
 		// Connect the servlet with the JSP file
@@ -50,7 +52,7 @@ public class AdminEventsServlet extends HttpServlet {
 		int triggerAt = Integer.parseInt(request.getParameter("trigger"));
 
 		// Add the new generator and store it in the server
-		EventsDAO dao = new EventsDAOImpl(getServletContext());
+		EventsDAO dao = new EventsDAOImpl(new Database());
 		Collection<Event> events = dao.getAll();
 		dao.add(new Event(events.size(), name, description, triggerAt));
 

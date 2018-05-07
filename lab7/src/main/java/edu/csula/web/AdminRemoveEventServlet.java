@@ -9,12 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.csula.storage.servlet.EventsDAOImpl;
+import edu.csula.storage.mysql.EventsDAOImpl;
 import edu.csula.storage.EventsDAO;
 import edu.csula.models.Event;
 
 import edu.csula.storage.servlet.UsersDAOImpl;
 import edu.csula.storage.UsersDAO;
+
+import edu.csula.storage.mysql.Database;
 
 @WebServlet("/admin/events/remove")
 public class AdminRemoveEventServlet extends HttpServlet {
@@ -30,7 +32,7 @@ public class AdminRemoveEventServlet extends HttpServlet {
 		}
 
 		// TODO: render the events page HTML
-		EventsDAO dao = new EventsDAOImpl(getServletContext());
+		EventsDAO dao = new EventsDAOImpl(new Database());
 		Collection<Event> events = dao.getAll();
 
 		// Grab the id from the URL
