@@ -49,7 +49,7 @@ public class EventsDAOImpl implements EventsDAO {
 		// TODO: get specific event by id
 		try (Connection c = context.getConnection(); PreparedStatement stmt = c.prepareStatement(getByIdQuery)) {
 			stmt.setInt(1, id);
-			ResultSet rs = stmt.executeQuery(getByIdQuery);
+			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
 				if (rs.getInt(1) == id) {
 					String name = rs.getString(2);
