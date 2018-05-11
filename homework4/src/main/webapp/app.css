@@ -1,0 +1,48 @@
+#title {
+	margin-top: 10%;
+}
+
+body {
+	font-family: Bree Serif;
+}
+
+nav ul {
+	padding-left: 0;
+}
+
+nav ul li {
+	padding: 10px;
+	display: inline-block;
+}
+
+nav ul li:hover {
+	color: white;
+	background-color: #fd5c63;
+}
+
+nav ul li a {
+	color: #fd5c63;
+	font-weight: bold;
+}
+
+nav ul li a:hover {
+	color: white;
+	background-color: #fd5c63;
+	text-decoration: none;
+}
+
+.input-box {
+	width: 55%;
+	padding: 0.5em;
+	font-size: 150%;
+	font-family: Bree Serif;
+}
+
+button {
+	margin: 1em;
+}
+
+button:hover {
+	color: white;
+	background-color: #fd5c63;
+}
