@@ -71,7 +71,7 @@ public class GeneratorsDAOImplTest {
 		when(getAllStatement.executeQuery()).thenReturn(resultSet);
 
 		Connection getAllConnection = mock(Connection.class);
-		when(getAllConnection.prepareStatement(GeneratorsDAOImpl.addQuery)).thenReturn(getAllStatement);
+		when(getAllConnection.prepareStatement(GeneratorsDAOImpl.getByIdQuery)).thenReturn(getAllStatement);
 
 		context = mock(Database.class);
 		when(context.getConnection()).thenReturn(getAllConnection);
