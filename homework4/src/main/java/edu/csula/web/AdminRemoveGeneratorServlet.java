@@ -9,12 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import edu.csula.storage.servlet.GeneratorsDAOImpl;
+import edu.csula.storage.mysql.GeneratorsDAOImpl;
 import edu.csula.storage.GeneratorsDAO;
 import edu.csula.models.Generator;
 
 import edu.csula.storage.servlet.UsersDAOImpl;
 import edu.csula.storage.UsersDAO;
+
+import edu.csula.storage.mysql.Database;
 
 @WebServlet("/admin/generators/remove")
 public class AdminRemoveGeneratorServlet extends HttpServlet {
@@ -29,7 +31,7 @@ public class AdminRemoveGeneratorServlet extends HttpServlet {
 			response.sendRedirect("../../admin/auth");
 		}
 
-		GeneratorsDAO dao = new GeneratorsDAOImpl(getServletContext());
+		GeneratorsDAO dao = new GeneratorsDAOImpl(new Database());
 		Collection<Generator> generators = dao.getAll();
 
 		// Grab the generator id from the URL

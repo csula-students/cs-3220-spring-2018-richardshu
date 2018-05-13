@@ -10,12 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.RequestDispatcher;
 
-import edu.csula.storage.servlet.GeneratorsDAOImpl;
+import edu.csula.storage.mysql.GeneratorsDAOImpl;
 import edu.csula.storage.GeneratorsDAO;
 import edu.csula.models.Generator;
 
 import edu.csula.storage.servlet.UsersDAOImpl;
 import edu.csula.storage.UsersDAO;
+
+import edu.csula.storage.mysql.Database;
 
 @WebServlet("/admin/generators")
 public class AdminGeneratorsServlet extends HttpServlet {
@@ -31,7 +33,7 @@ public class AdminGeneratorsServlet extends HttpServlet {
 		}
 
 		// TODO: render the generators page HTML
-		GeneratorsDAO dao = new GeneratorsDAOImpl(getServletContext());
+		GeneratorsDAO dao = new GeneratorsDAOImpl(new Database());
 		Collection<Generator> generators = dao.getAll();
 
 		// Connect the servlet with the JSP file
@@ -52,7 +54,7 @@ public class AdminGeneratorsServlet extends HttpServlet {
 		int unlockAt = Integer.parseInt(request.getParameter("unlock_at"));
 
 		// Add the new generator and store it in the server
-		GeneratorsDAO dao = new GeneratorsDAOImpl(getServletContext());
+		GeneratorsDAO dao = new GeneratorsDAOImpl(new Database());
 		Collection<Generator> generators = dao.getAll();
 		dao.add(new Generator(generators.size(), name, description, rate, baseCost, unlockAt));
 

@@ -5,7 +5,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Strawberry Clicker</title>
-	<link rel="stylesheet" href="../game.css">
+	<link rel="stylesheet" href="game.css">
 	<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 	<script>
 		state = ${state}; // State is passed from the Controrller as a JSON string
@@ -22,6 +22,7 @@
 	    	story.state = 'hidden';
 	    	story.triggeredAt = story.triggerAt;
 	    }
+	    console.log(state);
 	    
 	    window.defaultState = state; // Set the state in app.bundle.js to be the JSON string passed in
 	</script>
@@ -42,6 +43,6 @@
 	</div>
 
 	<!-- Import app.bundle.js -->
-	<script src="../app.bundle.js"></script>
+	<script src="app.bundle.js"></script>
 </body>
 </html>

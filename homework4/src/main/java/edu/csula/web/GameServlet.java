@@ -14,7 +14,7 @@ import edu.csula.storage.mysql.EventsDAOImpl;
 import edu.csula.storage.EventsDAO;
 import edu.csula.models.Event;
 
-import edu.csula.storage.servlet.GeneratorsDAOImpl;
+import edu.csula.storage.mysql.GeneratorsDAOImpl;
 import edu.csula.storage.GeneratorsDAO;
 import edu.csula.models.Generator;
 
@@ -37,7 +37,7 @@ public class GameServlet extends HttpServlet {
 			eventsDao.add(new Event(2, "Tractor", "Tractors for sale", 1000));
 		}
 
-		GeneratorsDAO generatorsDao = new GeneratorsDAOImpl(getServletContext());
+		GeneratorsDAO generatorsDao = new GeneratorsDAOImpl(new Database());
 		Collection<Generator> generators = generatorsDao.getAll();
 		if (generators.size() == 0) {
 			generatorsDao.add(new Generator(0, "Clicker", "Click click click! Harvest strawberries one click at a time", 5, 10, 10));
@@ -53,7 +53,7 @@ public class GameServlet extends HttpServlet {
 		EventsDAO eventsDao = new EventsDAOImpl(new Database());
 		Collection<Event> events = eventsDao.getAll();
 
-		GeneratorsDAO generatorsDao = new GeneratorsDAOImpl(getServletContext());
+		GeneratorsDAO generatorsDao = new GeneratorsDAOImpl(new Database());
 		Collection<Generator> generators = generatorsDao.getAll();
 
 		// Send the state to the front-end as a JSON object
